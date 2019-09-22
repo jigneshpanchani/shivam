@@ -12,13 +12,23 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
+    return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function () {
 
-Auth::routes();
+    Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('/work', 'WorkController@index')->name('work');
+	//Route::match(['get','post'], '/salary', 'SalaryController@index')->name('salary');
+	//Route::get('/salary', 'SalaryController@index')->name('salary');
+	//Route::post('/salary', 'SalaryController@store')->name('salary-add');
+	//Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('bus', 'BusController');
+    Route::resource('staff', 'StaffController');
+    Route::resource('salary', 'SalaryController');
+});
+
