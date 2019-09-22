@@ -47,15 +47,15 @@
                     </div>
                     <div class="uk-width-medium-1-6">
                         <div class="uk-input-group">
-                            <label>Salary (₹)</label>
-                            <input type="text" name="salary" value="{{ (!empty($result['salary'])) ? $result['salary'] : old('salary') }}" class="md-input masked_input label-fixed" id="masked_currency" data-inputmask="'alias': 'currency', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': true, 'prefix': false, 'placeholder': '0'" data-inputmask-showmaskonhover="false" />
+                            <label>Salary(₹)<span class="req"> * </span></label>
+                            <input type="number" name="salary" value="{{ (!empty($result['salary'])) ? $result['salary'] : old('salary') }}" class="md-input" required />
                         </div>
                     </div>
                 </div>
                 <div class="uk-grid" data-uk-grid-margin>
                     <div class="uk-width-1-2">
                         <div class="parsley-row">
-                            <label for="address">Address</label>
+                            <label for="address">Address<span class="req"> * </span></label>
                             <textarea required class="md-input" name="address" cols="10" rows="4">{{ (!empty($result['address'])) ? $result['address'] : old('address') }}</textarea>
                         </div>
                     </div>

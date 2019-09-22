@@ -104,21 +104,27 @@
                 select2jsApply();
             });
 
+            $(document).on('change', '#val_date', function () {
+                $('.staff_id').trigger('change');
+            });
+
+            $('body').on('change', 'select', function () {
+                let staffId = $('option:selected', this).val();
+                let department = $('option:selected', this).attr('data-department');
+                let salary = $('option:selected', this).attr('data-salary');
+                let that = this;
+                let withdrawal = getStaffData(staffId, that);
+                let html = $(this).parent().parent();
+                html.find('.department').val(department);
+                html.find('.salary').val(salary);
+            });
+
             function select2jsApply() {
                 //$('select').selectize.reload();
             }
             function currencyApply(){
                 $('.masked_input').inputmask({'alias': 'currency', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': true, 'prefix': false, 'placeholder': '0'});
             }
-
-            $('body').on('change', 'select', function () {
-                let department = $('option:selected', this).attr('data-department');
-                let salary = $('option:selected', this).attr('data-salary');
-                let html = $(this).parent().parent();
-                html.find('.department').val(department);
-                html.find('.salary').val(salary);
-            });
-
             function appendArr() {
                 //var member = '<?php json_encode($staff); ?>';
                 $('select').selectize({
@@ -134,6 +140,16 @@
                         title: 'case2'
                     }],
                     create: false
+                });
+            }
+            function getStaffData(staffId, that) {
+                $.ajax({
+                    url: "<?= route('staff-amount'); ?>",
+                    type: 'POST',
+                    data: { "staffId": staffId, "date": $('#val_date').val(), "_token": "{{ csrf_token() }}" },
+                    success: function (data){
+                        $(that).parent().parent().find('.withdrawal').val(data.amount);
+                    }
                 });
             }
         });

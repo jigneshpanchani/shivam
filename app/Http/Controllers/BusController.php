@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bus;
+use App\Models\Log;
 use Illuminate\Http\Request;
 
 class BusController extends Controller
@@ -94,12 +95,13 @@ class BusController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy($id, Log $log)
     {
         try{
             $bus = $this->model->findOrFail($id);
             $res = $bus->delete($id);
             if($res){
+                $log->addLog($bus, 'Delete', 'Bus delete');
                 return response()->json(['title' => 'Deleted!', 'status' => 'success', 'msg' => 'Bus detail delete successfully.']);
             }else{
                 return response()->json(['title' => 'Not Deleted!', 'status' => 'error', 'msg' => 'Oops...Something want wrong. Please try again.']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
 use App\Models\Salary;
 use App\Models\Staff;
 use Carbon\Carbon;
@@ -96,12 +97,13 @@ class SalaryController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy($id, Log $log)
     {
         try{
             $salary = $this->model->findOrFail($id);
             $res = $salary->delete($id);
             if($res){
+                $log->addLog($salary, 'Delete', 'Salary delete');
                 return response()->json(['title' => 'Deleted!', 'status' => 'success', 'msg' => 'Salary detail delete successfully.']);
             }else{
                 return response()->json(['title' => 'Not Deleted!', 'status' => 'error', 'msg' => 'Oops...Something want wrong. Please try again.']);

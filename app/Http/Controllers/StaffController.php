@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Log;
+use App\Models\Salary;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,7 @@ class StaffController extends Controller
         $this->department = array('Driver', 'Conductor', 'CA', 'Metaji', 'Office-boy', 'Cleaner');
     }
 
-    public function index()
+    public function index(Salary $salary)
     {
         $data['staff'] = $this->model->get();
         return view('staff.index', $data);
@@ -92,12 +94,14 @@ class StaffController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function destroy($id, Salary $salary, Log $log)
     {
         try{
             $staff = $this->model->findOrFail($id);
             $res = $staff->delete($id);
             if($res){
+                $log->addLog($staff, 'Delete', 'Staff member remove');
+                $salary->where('staff_id', $id)->delete();
                 return response()->json(['title' => 'Deleted!', 'status' => 'success', 'msg' => 'Staff detail delete successfully.']);
             }else{
                 return response()->json(['title' => 'Not Deleted!', 'status' => 'error', 'msg' => 'Oops...Something want wrong. Please try again.']);
@@ -107,14 +111,17 @@ class StaffController extends Controller
         }
     }
 
-    public function detail($id){
+    public function totalAmount(Request $request, Salary $salary){
 
-        print_r($id);die;
-        $res = $this->model->find($id);
-        if($res){
-            return response()->json(['status' => 'success', 'data' => $res]);
-        }else{
-            return response()->json(['status' => 'error', 'msg' => 'Oops...Something want wrong. Please try again.']);
-        }
+        $staffID = $request->post('staffId');
+        $date = $request->post('date');
+        $month = date('m', strtotime($date));
+        $year = date('Y', strtotime($date));
+
+        $amount = $salary->where('staff_id', $staffID)
+            ->whereMonth('date', $month)
+            ->whereYear('date', $year)
+            ->sum('amount');
+        return response()->json(['status' => 'success', 'amount' => $amount]);
     }
 }
