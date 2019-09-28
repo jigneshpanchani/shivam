@@ -18,7 +18,7 @@
                 {{ csrf_field() }}
                 <div class="uk-grid" data-uk-grid-margin>
                     <div class="uk-width-medium-1-3">
-                        <select id="department" name="department" data-md-selectize data-md-selectize-bottom data-uk-tooltip="{pos:'top'}" title="Select Zone" required>
+                        <select id="department" name="department" data-md-selectize data-md-selectize-bottom data-uk-tooltip="{pos:'top'}" title="Select Department" required>
                             <option value="">Select Department</option>
                             @foreach($departments as $department)
                                 <option value="{{ $department }}" {{ ($department==$result['department'])?'selected':'' }}>{{ $department }}</option>

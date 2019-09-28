@@ -15,4 +15,8 @@ class Bus extends Model
         'fuel_capacity',
         'note'
     ];
+
+    public function work(){
+        return $this->hasMany(Work::class);
+    }
 }

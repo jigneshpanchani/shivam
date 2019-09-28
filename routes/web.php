@@ -21,7 +21,6 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
-	Route::get('/work', 'WorkController@index')->name('work');
     Route::post('/staff-amount', 'StaffController@totalAmount')->name('staff-amount');
     //Route::match(['get','post'], '/salary', 'SalaryController@index')->name('salary');
 	//Route::post('/salary', 'SalaryController@store')->name('salary-add');
@@ -30,5 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('bus', 'BusController');
     Route::resource('staff', 'StaffController');
     Route::resource('salary', 'SalaryController');
+    Route::resource('expense', 'ExpenseController');
+    Route::resource('work', 'WorkController');
 });
 

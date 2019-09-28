@@ -94,8 +94,8 @@
 @push('scripts')
     <script src="{{ asset('bower_components/handlebars/handlebars.min.js') }}"></script>
     <script src="{{ asset('js/pages/form_validation.js') }}"></script>
-    <script src="{{ asset('js/pages/jquery.inputmask.bundle.js') }}"></script>
-    <script src="{{ asset('js/pages/forms_advanced.js') }}"></script>
+    {{--<script src="{{ asset('js/pages/jquery.inputmask.bundle.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/pages/forms_advanced.js') }}"></script>--}}
 
     <script type="text/javascript">
         $(document).ready( function () {

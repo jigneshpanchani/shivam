@@ -17,19 +17,27 @@
                 {{ method_field('PUT') }}
                 {{ csrf_field() }}
                 <div class="uk-grid" data-uk-grid-margin>
-                    <div class="uk-width-medium-1-4">
+                    <div class="uk-width-medium-1-3">
                         <div class="parsley-row">
                             <label for="name">Name</label>
                             <input type="text" name="name" value="{{$result['staff']['name']}}" class="md-input" disabled/>
                         </div>
                     </div>
-                    <div class="uk-width-medium-1-4">
+                    <div class="uk-width-medium-1-3">
                         <div class="uk-form-row parsley-row">
                             <label for="department">Department</label>
                             <input name="department" value="{{$result['staff']['department']}}" class="md-input" disabled/>
                         </div>
                     </div>
-                    <div class="uk-width-medium-1-4">
+                    <div class="uk-width-medium-1-3">
+                        <div class="uk-form-row parsley-row">
+                            <label for="salary">Salary</label>
+                            <input name="salary" value="{{$result['staff']['salary']}}" class="md-input" disabled/>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1-3">
                         <div class="uk-form-row parsley-row">
                             <label for="val_date">Salary Date <span class="req"> * </span></label>
                             <input type="text" name="date" id="val_date" class="md-input" value="{{ (!empty($result['date'])) ? date('d-m-Y', strtotime($result['date'])) : date('d-m-Y', strtotime(old('date'))) }}"
@@ -38,7 +46,7 @@
                                    data-uk-datepicker="{format:'DD-MM-YYYY'}" required/>
                         </div>
                     </div>
-                    <div class="uk-width-medium-1-4">
+                    <div class="uk-width-medium-1-3">
                         <div class="uk-form-row parsley-row">
                             <label>Salary (₹)<span class="req"> * </span></label>
                             <input type="number" name="amount" value="{{ (!empty($result['amount'])) ? $result['amount'] : old('amount') }}" class="md-input" id="amount" min="0" required/>

@@ -23,6 +23,12 @@
                     <span class="menu_title">Home</span>
                 </a>
             </li>
+            <li title="Work" class="{{ (Request::is('work') || Request::is('work/*')) ? 'current_section' : '' }}">
+                <a href="{{ route('work.create') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE87B;</i></span>
+                    <span class="menu_title">Daily Work</span>
+                </a>
+            </li>
             <li title="Report" class="{{ (Request::is('report') || Request::is('report/*')) ? 'current_section' : '' }}">
                 <a href="#">
                     <span class="menu_icon"><i class="material-icons">&#xE241;</i></span>
@@ -41,29 +47,20 @@
                     <span class="menu_title">Bus</span>
                 </a>
             </li>
-            <li title="Work" class="{{ (Request::is('salary') || Request::is('salary/*')) ? 'current_section' : '' }}">
+            <li title="Salary" class="{{ (Request::is('salary') || Request::is('salary/*')) ? 'current_section' : '' }}">
                 <a href="{{ route('salary.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE53E;</i></span>
                     <span class="menu_title">Salary</span>
                 </a>
             </li>
-            <li title="Work" class="{{ (Request::is('work') || Request::is('work/*')) ? 'current_section' : '' }}">
-                <a href="{{ route('work') }}">
-                    <span class="menu_icon"><i class="material-icons">&#xE87B;</i></span>
-                    <span class="menu_title">Work</span>
-                </a>
-            </li>
-            <li title="Settings" class="{{ (Request::is('zone') || Request::is('zone/*') || Request::is('department') || Request::is('department/*')) ? 'current_section' : '' }}">
+            <li title="Settings" class="{{ (Request::is('expense') || Request::is('expense/*')) ? 'current_section' : '' }}">
                 <a href="javascript:void(0)">
                     <span class="menu_icon"><i class="material-icons">&#xE8B8;</i></span>
                     <span class="menu_title">Settings</span>
                 </a>
                 <ul>
-                    <li title="Register" class="{{ (Request::is('zone') || Request::is('zone/*')) ? 'act_item' : '' }}">
-                        <a href="{{ route('register') }}">Registration</a>
-                    </li>
-                    <li title="Department & Price" class="{{ (Request::is('department') || Request::is('department/*')) ? 'act_item' : '' }}">
-                        <a href="#">Department & Price</a>
+                    <li title="Expense" class="{{ (Request::is('expense') || Request::is('expense/*')) ? 'act_item' : '' }}">
+                        <a href="{{ route('expense.index') }}">Expense</a>
                     </li>
                     <li title="Remove Oldest Work Record" class="{{ (Request::is('work/remove')) ? 'act_item' : '' }}">
                         <a href="#">Remove Oldest Work</a>
