@@ -62,8 +62,8 @@
                     <li title="Expense" class="{{ (Request::is('expense') || Request::is('expense/*')) ? 'act_item' : '' }}">
                         <a href="{{ route('expense.index') }}">Expense</a>
                     </li>
-                    <li title="Remove Oldest Work Record" class="{{ (Request::is('work/remove')) ? 'act_item' : '' }}">
-                        <a href="#">Remove Oldest Work</a>
+                    <li title="Remove Work Report" class="{{ (Request::is('history')) ? 'act_item' : '' }}">
+                        <a href="{{ route('history') }}">Remove Work Report</a>
                     </li>
                 </ul>
             </li>

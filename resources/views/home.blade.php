@@ -12,46 +12,29 @@
         <div>
             <div class="md-card">
                 <div class="md-card-content">
-                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_visitors peity_data">5,3,9,6,5,9,7</span></div>
-                    <span class="uk-text-muted uk-text-small">Staff Members</span>
-                    <h2 class="uk-margin-remove"><span class="countUpMe">{{ $staff }}</span></h2>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="md-card">
-                <div class="md-card-content">
-                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_sale peity_data">5,3,9,6,5,9,7,3,5,2</span></div>
+                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_orders peity_data">64/100</span></div>
                     <span class="uk-text-muted uk-text-small">Bus</span>
                     <h2 class="uk-margin-remove"><span class="countUpMe">{{ $bus }}</span></h2>
                 </div>
             </div>
         </div>
+        <div></div>
+        <div></div>
         <div>
             <div class="md-card">
                 <div class="md-card-content">
                     <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_orders peity_data">64/100</span></div>
-                    <span class="uk-text-muted uk-text-small">Orders Completed</span>
-                    <h2 class="uk-margin-remove"><span class="countUpMe">0<noscript>64</noscript></span>%</h2>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="md-card">
-                <div class="md-card-content">
-                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_live peity_data">5,3,9,6,5,9,7,3,5,2,5,3,9,6,5,9,7,3,5,2</span></div>
-                    <span class="uk-text-muted uk-text-small">Visitors (live)</span>
-                    <h2 class="uk-margin-remove" id="peity_live_text">46</h2>
+                    <span class="uk-text-muted uk-text-small">Staff Members</span>
+                    <h2 class="uk-margin-remove"><span class="countUpMe">{{ $staff }}</span></h2>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="uk-grid uk-grid-width-large-1-4 uk-grid-width-medium-1-2 uk-grid-medium uk-sortable sortable-handler hierarchical_show" data-uk-sortable data-uk-grid-margin>
         <div>
             <div class="md-card">
                 <div class="md-card-content">
-                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_visitors peity_data">5,3,9,6,5,9,7</span></div>
+                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_visitors peity_data">2,5,7,3,9,7,3</span></div>
                     <span class="uk-text-muted uk-text-small">Today's Income</span>
                     <h2 class="uk-margin-remove">₹<span class="countUpMe">{{ $income }}</span></h2>
                 </div>
@@ -60,20 +43,36 @@
         <div>
             <div class="md-card">
                 <div class="md-card-content">
-                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_sale peity_data">5,3,9,6,5,9,7,3,5,2</span></div>
+                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_visitors peity_data">5,3,9,6,5,9,7</span></div>
                     <span class="uk-text-muted uk-text-small">Last Day Income</span>
                     <h2 class="uk-margin-remove">₹<span class="countUpMe">{{ $prev_income }}</span></h2>
                 </div>
             </div>
         </div>
         <div>
-        L̥
+            <div class="md-card">
+                <div class="md-card-content">
+                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_visitors peity_data">4,6,4,9,5,3,8</span></div>
+                    <span class="uk-text-muted uk-text-small">Last Week Income</span>
+                    <h2 class="uk-margin-remove">₹<span class="countUpMe">{{ $last_week_income }}</span></h2>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="md-card">
+                <div class="md-card-content">
+                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_visitors peity_data">6,4,9,4,3,7,2</span></div>
+                    <span class="uk-text-muted uk-text-small">Last Month Income</span>
+                    <h2 class="uk-margin-remove">₹<span class="countUpMe">{{ $last_month_income }}</span></h2>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="uk-grid uk-grid-width-large-1-4 uk-grid-width-medium-1-2 uk-grid-medium uk-sortable sortable-handler hierarchical_show" data-uk-sortable data-uk-grid-margin>
         <div>
             <div class="md-card">
                 <div class="md-card-content">
-                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_visitors peity_data">5,3,9,6,5,9,7</span></div>
+                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_sale peity_data">3,5,2,7,8,6,4,3,8,2</span></div>
                     <span class="uk-text-muted uk-text-small">Today's Expense</span>
                     <h2 class="uk-margin-remove">₹<span class="countUpMe">{{ $expense }}</span></h2>
                 </div>
@@ -88,113 +87,21 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- tasks -->
-    <div class="uk-grid" data-uk-grid-margin data-uk-grid-match="{target:'.md-card-content'}">
-        <div class="uk-width-medium-1-2">
+        <div>
             <div class="md-card">
                 <div class="md-card-content">
-                    <div class="uk-overflow-container">
-                        <table class="uk-table">
-                            <thead>
-                            <tr>
-                                <th class="uk-text-nowrap">Task</th>
-                                <th class="uk-text-nowrap">Status</th>
-                                <th class="uk-text-nowrap">Progress</th>
-                                <th class="uk-text-nowrap uk-text-right">Due Date</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="uk-table-middle">
-                                <td class="uk-width-3-10 uk-text-nowrap"><a
-                                            href="{{ asset('page_scrum_board.html') }}">ALTR-231</a></td>
-                                <td class="uk-width-2-10 uk-text-nowrap"><span
-                                            class="uk-badge">In progress</span></td>
-                                <td class="uk-width-3-10">
-                                    <div class="uk-progress uk-progress-mini uk-progress-warning uk-margin-remove">
-                                        <div class="uk-progress-bar" style="width: 40%;"></div>
-                                    </div>
-                                </td>
-                                <td class="uk-width-2-10 uk-text-right uk-text-muted uk-text-small">24.11.2015
-                                </td>
-                            </tr>
-                            <tr class="uk-table-middle">
-                                <td class="uk-width-3-10 uk-text-nowrap"><a
-                                            href="{{ asset('page_scrum_board.html') }}">ALTR-82</a></td>
-                                <td class="uk-width-2-10 uk-text-nowrap"><span
-                                            class="uk-badge uk-badge-warning">Open</span></td>
-                                <td class="uk-width-3-10">
-                                    <div class="uk-progress uk-progress-mini uk-progress-success uk-margin-remove">
-                                        <div class="uk-progress-bar" style="width: 82%;"></div>
-                                    </div>
-                                </td>
-                                <td class="uk-width-2-10 uk-text-right uk-text-muted uk-text-small">21.11.2015
-                                </td>
-                            </tr>
-                            <tr class="uk-table-middle">
-                                <td class="uk-width-3-10 uk-text-nowrap"><a
-                                            href="{{ asset('page_scrum_board.html') }}">ALTR-123</a></td>
-                                <td class="uk-width-2-10 uk-text-nowrap"><span
-                                            class="uk-badge uk-badge-primary">New</span></td>
-                                <td class="uk-width-3-10">
-                                    <div class="uk-progress uk-progress-mini uk-margin-remove">
-                                        <div class="uk-progress-bar" style="width: 0;"></div>
-                                    </div>
-                                </td>
-                                <td class="uk-width-2-10 uk-text-right uk-text-muted uk-text-small">12.11.2015
-                                </td>
-                            </tr>
-                            <tr class="uk-table-middle">
-                                <td class="uk-width-3-10 uk-text-nowrap"><a
-                                            href="{{ asset('page_scrum_board.html') }}">ALTR-164</a></td>
-                                <td class="uk-width-2-10 uk-text-nowrap"><span
-                                            class="uk-badge uk-badge-success">Resolved</span></td>
-                                <td class="uk-width-3-10">
-                                    <div class="uk-progress uk-progress-mini uk-progress-primary uk-margin-remove">
-                                        <div class="uk-progress-bar" style="width: 61%;"></div>
-                                    </div>
-                                </td>
-                                <td class="uk-width-2-10 uk-text-right uk-text-muted uk-text-small">17.11.2015
-                                </td>
-                            </tr>
-                            <tr class="uk-table-middle">
-                                <td class="uk-width-3-10 uk-text-nowrap"><a
-                                            href="{{ asset('page_scrum_board.html') }}">ALTR-123</a></td>
-                                <td class="uk-width-2-10 uk-text-nowrap"><span class="uk-badge uk-badge-danger">Overdue</span>
-                                </td>
-                                <td class="uk-width-3-10">
-                                    <div class="uk-progress uk-progress-mini uk-progress-danger uk-margin-remove">
-                                        <div class="uk-progress-bar" style="width: 10%;"></div>
-                                    </div>
-                                </td>
-                                <td class="uk-width-2-10 uk-text-right uk-text-muted uk-text-small">12.11.2015
-                                </td>
-                            </tr>
-                            <tr class="uk-table-middle">
-                                <td class="uk-width-3-10"><a
-                                            href="{{ asset('page_scrum_board.html') }}">ALTR-92</a></td>
-                                <td class="uk-width-2-10"><span class="uk-badge uk-badge-success">Open</span>
-                                </td>
-                                <td class="uk-width-3-10">
-                                    <div class="uk-progress uk-progress-mini uk-margin-remove">
-                                        <div class="uk-progress-bar" style="width: 90%;"></div>
-                                    </div>
-                                </td>
-                                <td class="uk-width-2-10 uk-text-right uk-text-muted uk-text-small">08.11.2015
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_sale peity_data">5,9,7,3,5,2,3,8,2,6</span></div>
+                    <span class="uk-text-muted uk-text-small">Last Week Expense</span>
+                    <h2 class="uk-margin-remove">₹<span class="countUpMe">{{ $last_week_expense }}</span></h2>
                 </div>
             </div>
         </div>
-        <div class="uk-width-medium-1-2">
+        <div>
             <div class="md-card">
                 <div class="md-card-content">
-                    <h3 class="heading_a uk-margin-bottom">Statistics</h3>
-                    <div id="ct-chart" class="chartist"></div>
+                    <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_sale peity_data">5,3,3,5,2,9,6,5,9,7</span></div>
+                    <span class="uk-text-muted uk-text-small">Last Month Expense</span>
+                    <h2 class="uk-margin-remove">₹<span class="countUpMe">{{ $last_month_expense }}</span></h2>
                 </div>
             </div>
         </div>
@@ -204,28 +111,14 @@
 
 @push('scripts')
 
-    <!-- page specific plugins -->
-    <!-- d3 -->
-    <script src="{{ asset('bower_components/d3/d3.min.js') }}"></script>
-    <!-- metrics graphics (charts) -->
-    <script src="{{ asset('bower_components/metrics-graphics/dist/metricsgraphics.min.js') }}"></script>
     <!-- chartist (charts) -->
     <script src="{{ asset('bower_components/chartist/dist/chartist.min.js') }}"></script>
-    <!-- maplace (google maps) -->
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyC2FodI8g-iCz1KHRFE7_4r8MFLA7Zbyhk"></script>
-    <script src="{{ asset('bower_components/maplace-js/dist/maplace.min.js') }}"></script>
     <!-- peity (small charts) -->
     <script src="{{ asset('bower_components/peity/jquery.peity.min.js') }}"></script>
     <!-- easy-pie-chart (circular statistics) -->
     <script src="{{ asset('bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js') }}"></script>
     <!-- countUp -->
     <script src="{{ asset('bower_components/countUp.js/dist/countUp.min.js') }}"></script>
-    <!-- handlebars.js -->
-    <script src="{{ asset('bower_components/handlebars/handlebars.min.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/handlebars_helpers.min.js') }}"></script>
-    <!-- CLNDR -->
-    <script src="{{ asset('bower_components/clndr/clndr.min.js') }}"></script>
-
     <!--  dashbord functions -->
     <script src="{{ asset('assets/js/pages/dashboard.min.js') }}"></script>
 
