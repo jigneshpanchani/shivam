@@ -24,5 +24,6 @@ class Work extends Model
 
     public function bus(){
         return $this->belongsTo(Bus::class);
+        //return $this->belongsTo(Bus::class)->withTrashed();
     }
 }

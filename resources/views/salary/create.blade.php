@@ -27,6 +27,19 @@
                                            data-uk-datepicker="{format:'DD-MM-YYYY'}" required/>
                                 </div>
                             </div>
+                            <div class="uk-width-medium-1-2"></div>
+                            <div class="uk-width-medium-1-4">
+                                <div class="parsley-row">
+                                    <span class="icheck-inline">
+                                        <input type="radio" name="income_type" value="S" id="income_type_1" data-md-icheck />
+                                        <label for="income_type_1" class="inline-label">Salary</label>
+                                    </span>
+                                    <span class="icheck-inline">
+                                        <input type="radio" name="income_type" value="W" id="income_type_2" data-md-icheck checked />
+                                        <label for="income_type_2" class="inline-label">Withdrawal</label>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                         <br>
                         <div data-dynamic-fields="field_template_a"></div>

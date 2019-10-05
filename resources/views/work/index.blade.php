@@ -17,9 +17,10 @@
                 <thead>
                 <tr>
                     <th width="20%">Date</th>
-                    <th width="30%">Bus</th>
-                    <th width="20%">Income(₹)</th>
-                    <th width="20%">Expense(₹)</th>
+                    <th width="25%">Bus</th>
+                    <th width="15%">Income(₹)</th>
+                    <th width="15%">Expense(₹)</th>
+                    <th width="15%">Total(₹)</th>
                     <th width="10%">Action</th>
                 </tr>
                 </thead>
@@ -29,9 +30,11 @@
                     <tr>
                         <td>{{ date('d/m/Y', strtotime($row['work_date'])) }}</td>
                         <td>{{ $row['bus']['bus_number'] }}</td>
-                        <td>{{ $row['income'] }}</td>
-                        <td>{{ $row['expense'] }}</td>
+                        <td>{{ number_format($row['income']) }}</td>
+                        <td>{{ number_format($row['expense']) }}</td>
+                        <td>{{ number_format($row['income'] - $row['expense']) }}</td>
                         <td>
+                            <a href="{{ route('work.show', $row['id']) }}" class="uk-margin-left" title="Preview"><i class="uk-icon-eye uk-icon-small"></i></a>
                             <a href="{{ route('work.edit', $row['id']) }}" class="uk-margin-left" title="Edit"><i class="uk-icon-edit uk-icon-small"></i></a>
                             <a href="javascript:void(0);" title="Delete" data-id="{{ $row['id'] }}" class="uk-margin-left deleteRecord"><i class="material-icons md-24">&#xE872;</i></a>
                         </td>

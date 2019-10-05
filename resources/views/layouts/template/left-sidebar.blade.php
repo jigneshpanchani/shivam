@@ -19,22 +19,23 @@
 
             <li title="Dashboard" class="{{ ($currentRoute == 'home') ? 'current_section' : '' }}">
                 <a href="{{ route('home') }}">
-                    <span class="menu_icon"><i class="material-icons">&#xE871;</i></span>
+                    {{--<span class="menu_icon"><i class="material-icons">&#xE871;</i></span>--}}
+                    <span class="menu_icon"><i class="material-icons">&#xE88A;</i></span>
                     <span class="menu_title">Home</span>
                 </a>
             </li>
-            <li title="Work" class="{{ (Request::is('work') || Request::is('work/*')) ? 'current_section' : '' }}">
+            <li title="Daily Work" class="{{ (Request::is('work') || Request::is('work/*')) ? 'current_section' : '' }}">
                 <a href="{{ route('work.create') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE87B;</i></span>
                     <span class="menu_title">Daily Work</span>
                 </a>
             </li>
-            <li title="Report" class="{{ (Request::is('report') || Request::is('report/*')) ? 'current_section' : '' }}">
+            {{--<li title="Report" class="{{ (Request::is('report') || Request::is('report/*')) ? 'current_section' : '' }}">
                 <a href="#">
                     <span class="menu_icon"><i class="material-icons">&#xE241;</i></span>
                     <span class="menu_title">Report</span>
                 </a>
-            </li>
+            </li>--}}
             <li title="Staff" class="{{ (Request::is('staff') || Request::is('staff/*')) ? 'current_section' : '' }}">
                 <a href="{{ route('staff.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE87C;</i></span>
@@ -65,9 +66,12 @@
                     <li title="Remove Work Report" class="{{ (Request::is('history')) ? 'act_item' : '' }}">
                         <a href="{{ route('history') }}">Remove Work Report</a>
                     </li>
+                    <li title="Database Backup" class="">
+                        <a href="http://localhost/phpmyadmin/db_export.php?db=shivam" target="_blank">Database Backup </a>
+                    </li>
                 </ul>
             </li>
-            <li title="Sticky Notes">
+            <li title="Logout">
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>

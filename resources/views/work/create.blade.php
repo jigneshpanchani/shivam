@@ -67,10 +67,24 @@
                             </div>
                         </div>
                         <div class="uk-grid" data-uk-grid-margin>
-                            <div class="uk-width-medium-1-1">
+                            <div class="uk-width-medium-1-3">
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">Total Income (₹)</span>
+                                    <input type="text" name="total_income" id="total_income" value="{{ old('total_income') ? old('total_income') : 0 }}" class="md-input uk-text-right" readonly/>
+                                </div>
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">Total Expense (₹)</span>
+                                    <input type="text" name="total_expense" id="total_expense" value="{{ old('total_expense') ? old('total_expense') : 0 }}" class="md-input uk-text-right" readonly/>
+                                </div>
+                                <div class="uk-input-group">
+                                    <span class="uk-input-group-addon">Total (₹)</span>
+                                    <input type="text" name="total" id="total" value="{{ old('total') ? old('total') : 0 }}" class="md-input uk-text-right" readonly/>
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-2-3">
                                 <div class="parsley-row">
                                     <label for="note">Extra Note</label>
-                                    <textarea class="md-input" name="note" cols="10" rows="3">{{old('note')}}</textarea>
+                                    <textarea class="md-input" name="note" cols="10" rows="5">{{old('note')}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -155,21 +169,57 @@
     <script type="text/javascript">
         $(document).ready( function () {
 
-            $(document).on('click', '.plusBtn', function () {
-                select2jsApply();
-            });
-
-            function select2jsApply() {
-                //$('select').selectize.reload();
-            }
-
-            $('body').on('change', 'select', function () {
+            $(document).on('change', 'select', function () {
                 let department = $('option:selected', this).attr('data-department');
                 let salary = $('option:selected', this).attr('data-salary');
                 let html = $(this).parent().parent();
                 html.find('.department').val(department);
                 html.find('.salary').val(salary);
             });
+            $(document).on('click', '.btnSectionRemove', function () {
+                totalIncome();
+                totalExpense();
+            });
+            $(document).on('keyup', '.income_amount', function () {
+                totalIncome();
+            });
+            $(document).on('keyup', '.expense_amount', function () {
+                totalExpense();
+            });
+            $(document).on('click', '.plusBtn', function () {
+                select2jsApply();
+            });
+
+            function totalIncome() {
+                let income = 0;
+                $(document).find('.income_amount').each(function (key, value){
+                    if(parseInt($(this).val()) > 0){
+                        income = income + parseInt($(this).val());
+                    }
+                });
+                $('#total_income').val(income);
+                totalAmount();
+            }
+            function totalExpense() {
+                let expense = 0;
+                $(document).find('.expense_amount').each(function (key, value){
+                    if(parseInt($(this).val()) > 0) {
+                        expense = expense + parseInt($(this).val());
+                    }
+                });
+                $('#total_expense').val(expense);
+                totalAmount();
+            }
+            function totalAmount() {
+               let income = $('#total_income').val();
+               let expense = $('#total_expense').val();
+               let total = parseInt(income) - parseInt(expense);
+               $('#total').val(total)
+            }
+            function select2jsApply() {
+                //$('select').selectize.reload();
+            }
+
         });
     </script>
 @endpush

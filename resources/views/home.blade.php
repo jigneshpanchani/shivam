@@ -8,8 +8,8 @@
     <!-- notifications end -->
 
     <!-- statistics (small charts) -->
-    <div class="uk-grid uk-grid-width-large-1-4 uk-grid-width-medium-1-2 uk-grid-medium uk-sortable sortable-handler hierarchical_show" data-uk-sortable data-uk-grid-margin>
-        <div>
+    <div class="uk-grid" data-uk-grid-margin>
+        <div class="uk-width-medium-1-4">
             <div class="md-card">
                 <div class="md-card-content">
                     <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_orders peity_data">64/100</span></div>
@@ -18,9 +18,15 @@
                 </div>
             </div>
         </div>
-        <div></div>
-        <div></div>
-        <div>
+        <div class="uk-width-medium-1-2">
+            <div class="md-card">
+                <div class="md-card-content">
+                    <span class="uk-text-muted uk-text-small">&nbsp;</span>
+                    <h2 class="uk-margin-remove uk-text-center">Shivam Travels Dhasa</h2>
+                </div>
+            </div>
+        </div>
+        <div class="uk-width-medium-1-4">
             <div class="md-card">
                 <div class="md-card-content">
                     <div class="uk-float-right uk-margin-top uk-margin-small-right"><span class="peity_orders peity_data">64/100</span></div>
@@ -105,6 +111,46 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="uk-grid uk-grid-width-medium-1-4" data-uk-grid="{gutter:24}">
+        @foreach($buses as $bus)
+        <div>
+            <div class="md-card">   {{--md-card-collapsed--}}
+                <div class="md-card-toolbar">
+                    <div class="md-card-toolbar-actions">
+                        <i class="md-icon material-icons md-card-fullscreen-activate">&#xE5D0;</i>
+                        <i class="md-icon material-icons md-card-toggle">&#xE316;</i>
+                        <i class="md-icon material-icons md-card-close">&#xE14C;</i>
+                    </div>
+                    <h3 class="md-card-toolbar-heading-text uk-text-primary">
+                        {{ trim(str_replace(' - ', ' ', substr($bus->bus_number, -9))) }}
+                    </h3>
+                </div>
+                <div class="md-card-content">
+                    <table class="uk-table uk-table-hover">
+                        <tbody>
+                            <tr>
+                                <th class="uk-text-primary" colspan="2">{{ $bus->bus_number }}</th>
+                            </tr>
+                            <tr>
+                                <td>Income (₹)</td>
+                                <td>₹{{ number_format($bus->income) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Expense (₹)</td>
+                                <td>₹{{ number_format($bus->expense) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Profit (₹)</td>
+                                <td>₹{{ number_format($bus->total) }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
 
 @endsection

@@ -34,6 +34,7 @@ class StaffController extends Controller
         try{
             $validator = \Validator::make($request->all(),[
                 'department'=> 'required',
+                'balance'   => 'required',
                 'name'      => 'required',
                 'salary'    => 'required',
                 'address'   => 'required'
@@ -42,7 +43,7 @@ class StaffController extends Controller
                 return redirect()->route('staff.create')->withErrors($validator)->withInput();
             }
 
-            $inputArr = $request->only('department', 'name', 'contact_no', 'aadhar_card_no', 'salary', 'address', 'note');
+            $inputArr = $request->only('department', 'balance', 'name', 'contact_no', 'aadhar_card_no', 'salary', 'address', 'note');
             $this->model->create($inputArr);
             $request->session()->flash('success', 'New member add successfully');
             return redirect()->route('staff.create');
@@ -51,9 +52,20 @@ class StaffController extends Controller
         }
     }
 
-    public function show($id)
+    public function show($id, Salary $salary)
     {
-        //
+        $result = $this->model->find($id);
+        if($result){
+            $data['result'] = $result;
+            $data['salaries'] = $salary->where(['staff_id'=>$id, 'income_type'=>'S'])->get();
+            $data['withdrawal'] = $salary->where(['staff_id'=>$id, 'income_type'=>'W'])->get();
+            $data['totalSal'] = $salary->where(['staff_id'=>$id, 'income_type'=>'S'])->sum('amount');
+            $data['totalWdl'] = $salary->where(['staff_id'=>$id, 'income_type'=>'W'])->sum('amount');
+            $data['total'] = ($data['totalSal'] - $data['totalWdl']) + ($result['balance']);
+            return view('staff.show', $data);
+        }else{
+            return redirect()->route('staff.index');
+        }
     }
 
     public function edit($id)
@@ -73,6 +85,7 @@ class StaffController extends Controller
         try{
             $validator = \Validator::make($request->all(),[
                 'department'=> 'required',
+                'balance'   => 'required',
                 'name'      => 'required',
                 'salary'    => 'required',
                 'address'   => 'required'
@@ -80,7 +93,7 @@ class StaffController extends Controller
             if($validator->fails()){
                 return redirect()->route('staff.edit', $id)->withErrors($validator)->withInput();
             }
-            $updateArr = $request->only('department', 'name', 'contact_no', 'aadhar_card_no', 'salary', 'address', 'note');
+            $updateArr = $request->only('department', 'balance', 'name', 'contact_no', 'aadhar_card_no', 'salary', 'address', 'note');
             $staff = $this->model->findOrFail($id);
             $res = $staff->update($updateArr);
             if($res){
@@ -94,14 +107,13 @@ class StaffController extends Controller
         }
     }
 
-    public function destroy($id, Salary $salary, Log $log)
+    public function destroy($id, Log $log)
     {
         try{
             $staff = $this->model->findOrFail($id);
             $res = $staff->delete($id);
             if($res){
                 $log->addLog($staff, 'Delete', 'Staff member remove');
-                $salary->where('staff_id', $id)->delete();
                 return response()->json(['title' => 'Deleted!', 'status' => 'success', 'msg' => 'Staff detail delete successfully.']);
             }else{
                 return response()->json(['title' => 'Not Deleted!', 'status' => 'error', 'msg' => 'Oops...Something want wrong. Please try again.']);
@@ -118,7 +130,7 @@ class StaffController extends Controller
         $month = date('m', strtotime($date));
         $year = date('Y', strtotime($date));
 
-        $amount = $salary->where('staff_id', $staffID)
+        $amount = $salary->where(['staff_id'=>$staffID, 'income_type'=>'W'])
             ->whereMonth('date', $month)
             ->whereYear('date', $year)
             ->sum('amount');

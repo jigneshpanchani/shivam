@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Bus extends Model
 {
@@ -15,6 +16,7 @@ class Bus extends Model
         'fuel_capacity',
         'note'
     ];
+    use SoftDeletes;
 
     public function work(){
         return $this->hasMany(Work::class);

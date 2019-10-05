@@ -34,13 +34,14 @@ class SalaryController extends Controller
     {
         try{
             $validator = \Validator::make($request->all(),[
-                'staff_id'  => 'required|array',
-                'salary'    => 'required|array'
+                'staff_id'      => 'required|array',
+                'salary'        => 'required|array',
+                'income_type'   => 'required'
             ]);
             if($validator->fails()){
                 return redirect()->route('salary.create')->withErrors($validator)->withInput();
             }
-            $inputArr = $request->only('date', 'staff_id', 'salary');
+            $inputArr = $request->only('date', 'staff_id', 'salary', 'income_type');
             $res = $this->addSalary($inputArr);
             if($res){
                 $request->session()->flash('success', 'Salary add successfully');
@@ -74,8 +75,8 @@ class SalaryController extends Controller
     {
         try{
             $validator = \Validator::make($request->all(),[
-                'date'      => 'required',
-                'amount'    => 'required'
+                'date'          => 'required',
+                'amount'        => 'required'
             ]);
             if($validator->fails()){
                 return redirect()->route('salary.edit', $id)->withErrors($validator)->withInput();
@@ -118,7 +119,7 @@ class SalaryController extends Controller
         $userID = Auth::user()->id;
         $dataSet = array();
         foreach ($data['staff_id'] as $k =>$staff_id){
-            $dataSet[] = ['staff_id'=>$staff_id, 'amount'=>$data['salary'][$k], 'date'=>$date, 'created_by'=>$userID];
+            $dataSet[] = ['staff_id'=>$staff_id, 'income_type'=>$data['income_type'], 'amount'=>$data['salary'][$k], 'date'=>$date, 'created_by'=>$userID];
         }
         return DB::table('salaries')->insert($dataSet);
     }

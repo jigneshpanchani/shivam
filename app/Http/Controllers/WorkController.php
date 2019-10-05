@@ -79,7 +79,15 @@ class WorkController extends Controller
 
     public function show($id)
     {
-        //
+        $result = $this->model->with(['incomes', 'expenses'])->find($id);
+        if($result){
+            $data['expenseTypes'] = $this->expenseType->get();
+            $data['buses'] = $this->bus->get();
+            $data['result'] = $result;
+            return view('work.show', $data);
+        }else{
+            return redirect()->route('work.index');
+        }
     }
 
     public function edit($id)

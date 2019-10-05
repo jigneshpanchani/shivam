@@ -25,6 +25,15 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="uk-width-medium-2-4">
+
+                    </div>
+                    <div class="uk-width-medium-1-6">
+                        <div class="parsley-row">
+                            <label>Opening Balance (₹)</label>
+                            <input type="number" name="balance" value="{{ (!empty($result['balance'])) ? $result['balance'] : old('balance') }}" class="md-input" required />
+                        </div>
+                    </div>
                 </div>
                 <div class="uk-grid" data-uk-grid-margin>
                     <div class="uk-width-medium-1-3">
