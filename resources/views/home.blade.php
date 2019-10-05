@@ -22,7 +22,7 @@
             <div class="md-card">
                 <div class="md-card-content">
                     <span class="uk-text-muted uk-text-small">&nbsp;</span>
-                    <h2 class="uk-margin-remove uk-text-center">Shivam Travels Dhasa</h2>
+                    <h2 class="uk-margin-remove uk-text-center uk-text-warning">Shivam Travels Dhasa</h2>
                 </div>
             </div>
         </div>

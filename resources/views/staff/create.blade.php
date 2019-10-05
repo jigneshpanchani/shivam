@@ -29,7 +29,7 @@
                     </div>
                     <div class="uk-width-medium-1-6">
                         <div class="parsley-row">
-                            <label>Opening Balance (₹)</label>
+                            <label>Opening Balance (₹)<span class="req"> * </span></label>
                             <input type="number" name="balance" value="{{ old('balance') ? old('balance') : 0 }}" class="md-input" required />
                         </div>
                     </div>

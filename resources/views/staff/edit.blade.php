@@ -30,7 +30,7 @@
                     </div>
                     <div class="uk-width-medium-1-6">
                         <div class="parsley-row">
-                            <label>Opening Balance (₹)</label>
+                            <label>Opening Balance (₹)<span class="req"> * </span></label>
                             <input type="number" name="balance" value="{{ (!empty($result['balance'])) ? $result['balance'] : old('balance') }}" class="md-input" required />
                         </div>
                     </div>

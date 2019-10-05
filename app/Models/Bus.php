@@ -9,6 +9,7 @@ class Bus extends Model
 {
     protected $fillable =[
         'bus_number',
+        'balance',
         'owner_name',
         'root',
         'type',

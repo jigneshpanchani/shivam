@@ -8,12 +8,6 @@ use Illuminate\Http\Request;
 
 class BusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     private $model;
     public function __construct(Bus $bus)
     {
@@ -36,6 +30,7 @@ class BusController extends Controller
         try{
             $validator = \Validator::make($request->all(),[
                 'bus_number'    => 'required|unique:buses,bus_number',
+                'balance'       => 'required',
                 'type'          => 'required',
                 'owner_name'    => 'required',
                 'root'          => 'required'
@@ -44,7 +39,7 @@ class BusController extends Controller
                 return redirect()->route('bus.create')->withErrors($validator)->withInput();
             }
 
-            $inputArr = $request->only('bus_number', 'owner_name', 'root', 'type', 'seat', 'fuel_capacity', 'note');
+            $inputArr = $request->only('bus_number', 'balance', 'owner_name', 'root', 'type', 'seat', 'fuel_capacity', 'note');
             $this->model->create($inputArr);
             $request->session()->flash('success', 'New bus add successfully');
             return redirect()->route('bus.create');
@@ -74,6 +69,7 @@ class BusController extends Controller
         try{
             $validator = \Validator::make($request->all(),[
                 'bus_number'    => 'required|unique:buses,bus_number,'.$id,
+                'balance'       => 'required',
                 'owner_name'    => 'required',
                 'type'          => 'required',
                 'root'          => 'required'
@@ -81,7 +77,7 @@ class BusController extends Controller
             if($validator->fails()){
                 return redirect()->route('bus.edit', $id)->withErrors($validator)->withInput();
             }
-            $updateArr = $request->only('bus_number', 'owner_name', 'root', 'type', 'seat', 'fuel_capacity', 'note');
+            $updateArr = $request->only('bus_number', 'balance', 'owner_name', 'root', 'type', 'seat', 'fuel_capacity', 'note');
             $bus = $this->model->findOrFail($id);
             $res = $bus->update($updateArr);
             if($res){

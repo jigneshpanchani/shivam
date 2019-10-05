@@ -22,6 +22,15 @@
                             <input type="text" name="bus_number" value="{{old('bus_number')}}" class="md-input masked_input" id="bus_number" data-inputmask="'mask': 'AA - 99 - AA - 9999'" data-inputmask-showmaskonhover="false" required/>
                         </div>
                     </div>
+                    <div class="uk-width-medium-1-3">
+
+                    </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="parsley-row">
+                            <label>Opening Balance (₹)<span class="req"> * </span></label>
+                            <input type="number" name="balance" value="{{ old('balance') ? old('balance') : 0 }}" class="md-input" required />
+                        </div>
+                    </div>
                 </div>
                 <div class="uk-grid" data-uk-grid-margin>
                     <div class="uk-width-medium-1-3">
