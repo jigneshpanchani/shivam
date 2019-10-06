@@ -39,7 +39,7 @@ class BusController extends Controller
                 return redirect()->route('bus.create')->withErrors($validator)->withInput();
             }
 
-            $inputArr = $request->only('bus_number', 'balance', 'owner_name', 'root', 'type', 'seat', 'fuel_capacity', 'note');
+            $inputArr = $request->only('bus_number', 'balance', 'owner_name', 'root', 'type', 'seat', 'fuel_capacity', 'note', 'fitness', 'insurance');
             $this->model->create($inputArr);
             $request->session()->flash('success', 'New bus add successfully');
             return redirect()->route('bus.create');
@@ -77,7 +77,7 @@ class BusController extends Controller
             if($validator->fails()){
                 return redirect()->route('bus.edit', $id)->withErrors($validator)->withInput();
             }
-            $updateArr = $request->only('bus_number', 'balance', 'owner_name', 'root', 'type', 'seat', 'fuel_capacity', 'note');
+            $updateArr = $request->only('bus_number', 'balance', 'owner_name', 'root', 'type', 'seat', 'fuel_capacity', 'note', 'fitness', 'insurance');
             $bus = $this->model->findOrFail($id);
             $res = $bus->update($updateArr);
             if($res){

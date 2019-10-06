@@ -15,7 +15,9 @@ class Bus extends Model
         'type',
         'seat',
         'fuel_capacity',
-        'note'
+        'note',
+        'fitness',
+        'insurance'
     ];
     use SoftDeletes;
 

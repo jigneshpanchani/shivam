@@ -47,7 +47,7 @@
     <!-- datatables buttons-->
     <script src="{{ asset('bower_components/datatables-buttons/js/dataTables.buttons.js') }}"></script>
     <script src="{{ asset('assets/js/custom/datatables/buttons.uikit.js') }}"></script>
-    <script src="{{ asset('bower_components/jszip/dist/jszip.min.js') }}"></script>
+    {{--<script src="{{ asset('bower_components/jszip/dist/jszip.min.js') }}"></script>--}}
     <script src="{{ asset('bower_components/datatables-buttons/js/buttons.html5.js') }}"></script>
     <script src="{{ asset('bower_components/datatables-buttons/js/buttons.print.js') }}"></script>
 

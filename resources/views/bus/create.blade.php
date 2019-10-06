@@ -71,6 +71,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-1-2">
+                        <div class="parsley-row">
+                            <label for="fitness">Fitness Details</label>
+                            <textarea class="md-input" name="fitness" cols="10" rows="4">{{old('fitness')}}</textarea>
+                        </div>
+                    </div>
+                    <div class="uk-width-1-2">
+                        <div class="parsley-row">
+                            <label for="insurance">Insurance Details</label>
+                            <textarea class="md-input" name="insurance" cols="10" rows="4">{{old('insurance')}}</textarea>
+                        </div>
+                    </div>
+                </div>
                 <div class="uk-grid">
                     <div class="uk-width-1-1 uk-text-right">
                         <button type="submit" class="md-btn md-btn-primary">Save</button>
