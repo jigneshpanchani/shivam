@@ -16,25 +16,17 @@
             <form name="staff_edit" id="form_validation" class="uk-form-stacked" method="post" action="#">
                 {{ csrf_field() }}
                 <div class="uk-grid" data-uk-grid-margin>
-                    <div class="uk-width-medium-1-4">
+                    <div class="uk-width-medium-1-5">
                         <div class="parsley-row">
-                            <select id="bus_id" name="bus_id" data-md-selectize data-md-selectize-bottom data-uk-tooltip="{pos:'top'}" title="Bus Number" disabled>
-                                <option value="">Select Bus</option>
-                                @foreach($buses as $bus)
-                                    <option value="{{ $bus->id }}" {{ ($bus->id==((!empty($result['bus_id'])) ? $result['bus_id'] : old('bus_id')))?'selected':'' }}>{{ $bus->bus_number }}</option>
-                                @endforeach
-                            </select>
+                            <label>Expense Type</label>
+                            <input type="text" name="expense_type[]" class="md-input" value="{{ (isset($busArr[$result['bus_id']])) ? $busArr[$result['bus_id']] : 'N/A' }}" readonly />
                         </div>
                     </div>
-                    <div class="uk-width-medium-1-2"></div>
-                    <div class="uk-width-medium-1-4">
+                    <div class="uk-width-medium-3-5"></div>
+                    <div class="uk-width-medium-1-5">
                         <div class="parsley-row">
                             <label for="work_date">Reporting Date</label>
-                            <input type="text" name="work_date" id="work_date" class="md-input"
-                                   value="{{ (!empty($result['work_date'])) ? date('d-m-Y', strtotime($result['work_date'])) : date('d-m-Y', strtotime(old('work_date'))) }}"
-                                   data-parsley-americandate
-                                   data-parsley-americandate-message="This value should be a valid date (DD-MM-YYYY)"
-                                   data-uk-datepicker="{format:'DD-MM-YYYY'}" readonly/>
+                            <input type="text" name="work_date" class="md-input" value="{{ (!empty($result['work_date'])) ? date('d-m-Y', strtotime($result['work_date'])) : '' }}" readonly/>
                         </div>
                     </div>
                 </div>
@@ -82,12 +74,10 @@
                                                 <div class="uk-width-1-1">
                                                     <div class="uk-grid">
                                                         <div class="uk-width-1-3">
-                                                            <select class="expense_id" name="expense_id[]" data-md-selectize data-md-selectize-bottom data-uk-tooltip="{pos:'top'}" title="Expense Type" disabled>
-                                                                <option value="">Select Expense</option>
-                                                                @foreach($expenseTypes as $expense)
-                                                                    <option value="{{ $expense->id }}" {{ ($expense->id==((!empty($rowExp->expense_id)) ? $rowExp->expense_id : old('expense_id')))?'selected':'' }}>{{ $expense->name }}</option>
-                                                                @endforeach
-                                                            </select>
+                                                            <div class="uk-input-group">
+                                                                <label>Expense Type</label>
+                                                                <input type="text" name="expense_type[]" class="md-input" value="{{ (isset($expenseArr[$rowExp->expense_id])) ? $expenseArr[$rowExp->expense_id] : 'N/A' }}" readonly />
+                                                            </div>
                                                         </div>
                                                         <div class="uk-width-1-3">
                                                             <div class="uk-input-group">

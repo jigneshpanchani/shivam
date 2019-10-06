@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bus;
+use App\Models\ExpenseType;
+use App\Models\Staff;
 use App\Models\Work;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -9,16 +12,26 @@ use Illuminate\Http\Request;
 class ReportController extends Controller
 {
 
-    public function __construct()
+    private $expenseType;
+    private $staff;
+    private $work;
+    private $bus;
+    public function __construct(ExpenseType $expenseType, Staff $staff, Work $work, Bus $bus)
     {
-        //
+        $this->expenseType = $expenseType;
+        $this->staff = $staff;
+        $this->work = $work;
+        $this->bus = $bus;
     }
 
     public function index(){
         $data['typeArr'] = array('E'=>'expense', 'I'=>'income', 'S'=>'salary', 'W'=>'work');
+        $data['expenseArr'] = $this->expenseType->pluck('name','id');
+        $data['staffArr'] = $this->staff->pluck('name','id');
+        $data['busArr'] = $this->bus->pluck('bus_number','id');
         return view('settings.report', $data);
     }
-    public function generate(Request $request, Work $work)
+    public function generate(Request $request)
     {
         try{
             $validator = \Validator::make($request->all(),[
@@ -30,7 +43,6 @@ class ReportController extends Controller
                 return redirect()->route('report')->withErrors($validator)->withInput();
             }
             $this->report($request->input());
-
         }catch(\Exception $e){
             return redirect()->route('history')->with('error', $e->getMessage())->withInput();
         }
@@ -41,9 +53,11 @@ class ReportController extends Controller
         $start = Carbon::parse($data['start_date'])->format('Y-m-d');
         $end = Carbon::parse($data['end_date'])->format('Y-m-d');
 
-        $workArr = Work::whereBetween('work_date',[$start, $end])->orderBy('work_date')->get();
-        echo "<pre>";print_r($workArr);die;
+        $workArr = $this->work->whereBetween('work_date',[$start, $end])->orderBy('work_date')->get();
+        //echo "<pre>";print_r($workArr);die;
+        $data['workArr'] = $workArr;
 
+        return view('settings.report', $data);
     }
 
 }

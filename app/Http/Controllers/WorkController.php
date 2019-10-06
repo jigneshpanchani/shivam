@@ -81,8 +81,8 @@ class WorkController extends Controller
     {
         $result = $this->model->with(['incomes', 'expenses'])->find($id);
         if($result){
-            $data['expenseTypes'] = $this->expenseType->get();
-            $data['buses'] = $this->bus->get();
+            $data['expenseArr'] = $this->expenseType->pluck('name','id');
+            $data['busArr'] = $this->bus->pluck('bus_number','id');
             $data['result'] = $result;
             return view('work.show', $data);
         }else{
