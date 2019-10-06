@@ -30,12 +30,6 @@
                     <span class="menu_title">Daily Work</span>
                 </a>
             </li>
-            {{--<li title="Report" class="{{ (Request::is('report') || Request::is('report/*')) ? 'current_section' : '' }}">
-                <a href="#">
-                    <span class="menu_icon"><i class="material-icons">&#xE241;</i></span>
-                    <span class="menu_title">Report</span>
-                </a>
-            </li>--}}
             <li title="Staff" class="{{ (Request::is('staff') || Request::is('staff/*')) ? 'current_section' : '' }}">
                 <a href="{{ route('staff.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE87C;</i></span>
@@ -52,6 +46,12 @@
                 <a href="{{ route('salary.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE53E;</i></span>
                     <span class="menu_title">Salary</span>
+                </a>
+            </li>
+            <li title="Report" class="{{ (Request::is('report') || Request::is('report/*')) ? 'current_section' : '' }}">
+                <a href="{{ route('report') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE241;</i></span>
+                    <span class="menu_title">Report</span>
                 </a>
             </li>
             <li title="Settings" class="{{ (Request::is('expense') || Request::is('expense/*')) ? 'current_section' : '' }}">

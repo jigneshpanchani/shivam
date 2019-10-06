@@ -42,6 +42,7 @@ class HomeController extends Controller
             $bus->income = $work->where('bus_id', $bus->id)->sum('income');
             $bus->expense = $work->where('bus_id', $bus->id)->sum('expense');
             $bus->total = $bus->income - $bus->expense;
+            $bus->silak = $bus->balance + $bus->total;
         }
         $data['buses'] = $busArr;
 

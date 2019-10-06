@@ -134,16 +134,20 @@
                                 <th class="uk-text-primary" colspan="2">{{ $bus->bus_number }}</th>
                             </tr>
                             <tr>
-                                <td>Income (₹)</td>
+                                <td>Income</td>
                                 <td>₹{{ number_format($bus->income) }}</td>
                             </tr>
                             <tr>
-                                <td>Expense (₹)</td>
+                                <td>Expense</td>
                                 <td>₹{{ number_format($bus->expense) }}</td>
                             </tr>
                             <tr>
-                                <td>Profit (₹)</td>
+                                <td>Profit</td>
                                 <td>₹{{ number_format($bus->total) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Closed Balance</td>
+                                <td>₹{{ number_format($bus->silak) }}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -22,9 +22,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/staff-amount', 'StaffController@totalAmount')->name('staff-amount');
-    //Route::match(['get','post'], '/history', 'HistoryController@index')->name('history');
+    //Route::match(['get','post'], '/report', 'ReportController@index')->name('report');
     Route::get('/history', 'HistoryController@index')->name('history');
     Route::post('/remove-history', 'HistoryController@remove')->name('remove-history');
+    Route::get('/report', 'ReportController@index')->name('report');
+    Route::post('/report-generate', 'ReportController@generate')->name('report-generate');
 
 
     Route::resource('bus', 'BusController');
