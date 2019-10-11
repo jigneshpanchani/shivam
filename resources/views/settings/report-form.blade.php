@@ -30,8 +30,8 @@
                         <div class="uk-grid" data-uk-grid-margin>
                             <div class="uk-width-medium-1-4">
                                 <div class="parsley-row">
-                                    <label for="uk_dp_start">Start Date</label> {{--{{ old('start_date') }}--}}
-                                    <input type="text" name="start_date" id="uk_dp_start" class="md-input" value="01-09-2019"
+                                    <label for="uk_dp_start">Start Date</label>
+                                    <input type="text" name="start_date" id="uk_dp_start" class="md-input" value="{{ old('start_date') }}"
                                            data-parsley-americandate
                                            data-parsley-americandate-message="This value should be a valid date (DD-MM-YYYY)"
                                            data-uk-datepicker="{format:'DD-MM-YYYY'}" autocomplete="off" required/>
@@ -40,7 +40,7 @@
                             <div class="uk-width-medium-1-4">
                                 <div class="parsley-row">
                                     <label for="uk_dp_end">End Date</label>
-                                    <input type="text" name="end_date" id="uk_dp_end" class="md-input" value="15-10-2019"
+                                    <input type="text" name="end_date" id="uk_dp_end" class="md-input" value="{{ old('end_date') }}"
                                            data-parsley-americandate
                                            data-parsley-americandate-message="This value should be a valid date (DD-MM-YYYY)"
                                            data-uk-datepicker="{format:'DD-MM-YYYY'}" autocomplete="off" required/>
