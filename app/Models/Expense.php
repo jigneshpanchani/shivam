@@ -13,4 +13,7 @@ class Expense extends Model
         'detail',
         'work_date'
     ];
+    public function work(){
+        return $this->belongsTo(Work::class);
+    }
 }

@@ -24,4 +24,10 @@ class Bus extends Model
     public function work(){
         return $this->hasMany(Work::class);
     }
+    public function expense(){
+        return $this->hasMany(Expense::class);
+    }
+    public function income(){
+        return $this->hasMany(Income::class);
+    }
 }

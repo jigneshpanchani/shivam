@@ -12,4 +12,8 @@ class Income extends Model
         'detail',
         'work_date'
     ];
+
+    public function bus(){
+        return $this->belongsTo(Bus::class);
+    }
 }

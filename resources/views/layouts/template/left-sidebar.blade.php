@@ -48,7 +48,7 @@
                     <span class="menu_title">Salary</span>
                 </a>
             </li>
-            <li title="Report" class="{{ (Request::is('report') || Request::is('report/*')) ? 'current_section' : '' }}">
+            <li title="Report" class="{{ (Request::is('report') || Request::is('report-generate')) ? 'current_section' : '' }}">
                 <a href="{{ route('report') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE241;</i></span>
                     <span class="menu_title">Report</span>
