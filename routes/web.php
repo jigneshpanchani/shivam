@@ -34,5 +34,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('salary', 'SalaryController');
     Route::resource('expense', 'ExpenseController');
     Route::resource('work', 'WorkController');
+    Route::resource('partner', 'PartnerController');
+    Route::resource('company', 'CompanyController');
+    Route::resource('account', 'AccountController');
 });
 

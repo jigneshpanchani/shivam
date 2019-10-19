@@ -49,17 +49,26 @@
                     <span class="menu_title">Salary</span>
                 </a>
             </li>
-            <li title="Company" class="{{ (Request::is('report') || Request::is('report-generate')) ? 'current_section' : '' }}">
-                <a href="{{ route('report') }}">
-                    <span class="menu_icon"><i class="material-icons">&#xE8CB;</i></span>
-                    <span class="menu_title">Company</span>
-                </a>
-            </li>
             <li title="Report" class="{{ (Request::is('report') || Request::is('report-generate')) ? 'current_section' : '' }}">
                 <a href="{{ route('report') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE241;</i></span>
                     <span class="menu_title">Report</span>
                 </a>
+            </li>
+
+            <li title="Company" class="{{ (Request::is('partner') || Request::is('partner/*') || Request::is('company') || Request::is('company/*')) ? 'current_section' : '' }}">
+                <a href="javascript:void(0)">
+                    <span class="menu_icon"><i class="material-icons">&#xE8CB;</i></span>
+                    <span class="menu_title">Company</span>
+                </a>
+                <ul>
+                    <li title="Partner" class="{{ (Request::is('partner') || Request::is('partner/*')) ? 'act_item' : '' }}">
+                        <a href="{{ route('partner.index') }}">Partner</a>
+                    </li>
+                    <li title="Account" class="{{ (Request::is('account') || Request::is('account/*')) ? 'act_item' : '' }}">
+                        <a href="{{ route('account.index') }}">Account</a>
+                    </li>
+                </ul>
             </li>
             <li title="Settings" class="{{ (Request::is('expense') || Request::is('expense/*')) ? 'current_section' : '' }}">
                 <a href="javascript:void(0)">

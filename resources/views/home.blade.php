@@ -21,8 +21,8 @@
         <div class="uk-width-medium-1-2">
             <div class="md-card">
                 <div class="md-card-content">
-                    <span class="uk-text-muted uk-text-small">&nbsp;</span>
-                    <h2 class="uk-margin-remove uk-text-center uk-text-warning">Shivam Travels Dhasa</h2>
+                    {{--<span class="uk-text-muted uk-text-small">&nbsp;</span>--}}
+                    <h2 class="uk-text-center uk-text-danger">શ્રી ૧I</h2>
                 </div>
             </div>
         </div>
