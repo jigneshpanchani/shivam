@@ -2,7 +2,10 @@
     <div class="sidebar_main_header" style="font-size: 17px!important; padding-top: 24px;">
         <div class="sidebar_logo">
             <a href="{{ route('home') }}" class="sSidebar_hide sidebar_logo_large">
-                <strong>Shivam Travels</strong>
+                <h3 style="color: #665097">
+                    <img class="logo_regular" src="{{ asset('assets/img/favicon.png') }}" alt="" height="45" width="45"/>
+                    Shivam Travels
+                </h3>
             </a>
             <a href="{{ route('home') }}" class="sSidebar_show sidebar_logo_small">
                 <img class="logo_regular" src="{{ asset('assets/img/favicon.png') }}" alt="" height="45" width="45"/>
