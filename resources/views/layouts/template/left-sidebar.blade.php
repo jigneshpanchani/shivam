@@ -3,12 +3,10 @@
         <div class="sidebar_logo">
             <a href="{{ route('home') }}" class="sSidebar_hide sidebar_logo_large">
                 <strong>Shivam Travels</strong>
-                {{--<img class="logo_regular" src="{{ asset('assets/img/logo_main.png') }}" alt="" height="15" width="71"/>--}}
-                {{--<img class="logo_light" src="{{ asset('assets/img/logo_main_white.png') }}" alt="" height="15" width="71"/>--}}
             </a>
             <a href="{{ route('home') }}" class="sSidebar_show sidebar_logo_small">
-                <img class="logo_regular" src="{{ asset('assets/img/logo_main_small.png') }}" alt="" height="32" width="32"/>
-                <img class="logo_light" src="{{ asset('assets/img/logo_main_small_light.png') }}" alt="" height="32" width="32"/>
+                <img class="logo_regular" src="{{ asset('assets/img/favicon.png') }}" alt="" height="45" width="45"/>
+                <img class="logo_light" src="{{ asset('assets/img/favicon.png') }}" alt="" height="45" width="45"/>
             </a>
         </div>
     </div>
@@ -46,6 +44,12 @@
                 <a href="{{ route('salary.index') }}">
                     <span class="menu_icon"><i class="material-icons">&#xE53E;</i></span>
                     <span class="menu_title">Salary</span>
+                </a>
+            </li>
+            <li title="Company" class="{{ (Request::is('report') || Request::is('report-generate')) ? 'current_section' : '' }}">
+                <a href="{{ route('report') }}">
+                    <span class="menu_icon"><i class="material-icons">&#xE8CB;</i></span>
+                    <span class="menu_title">Company</span>
                 </a>
             </li>
             <li title="Report" class="{{ (Request::is('report') || Request::is('report-generate')) ? 'current_section' : '' }}">

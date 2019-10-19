@@ -115,7 +115,7 @@ class ReportController extends Controller
 
         }elseif($type == 'S'){
 
-            $sQuery = $this->salary->with('staff');
+            $sQuery = $this->salary->with('staff')->whereBetween('date',[$start, $end]);
             if($sId == 'all'){
                 $title .= "all staff members's salary/withdrawal";
             }else{
@@ -141,6 +141,7 @@ class ReportController extends Controller
 
         $title .= ' ['.$data['start_date'].' To '.$data['end_date']. ']';
         $data['title'] = $title;
+        $data['type'] = $type;
 
         return $data;
     }

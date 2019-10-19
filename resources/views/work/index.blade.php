@@ -41,7 +41,7 @@
                     </tr>
                 @endforeach
                 @else
-                    <tr><td colspan="5" class="uk-text-center">No record found</td></tr>
+                    <tr><td colspan="6" class="uk-text-center">No record found</td></tr>
                 @endif
                 </tbody>
             </table>

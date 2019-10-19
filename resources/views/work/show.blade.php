@@ -125,6 +125,7 @@
                 </div>
                 <div class="uk-grid">
                     <div class="uk-width-1-1 uk-text-right">
+                        <a href="{{ route('work.edit', $result['id']) }}" class="md-btn md-btn-primary">Modify</a>
                         <a href="{{ route('work.show', $result['id']) }}" class="md-btn md-btn-danger">Cancel</a>
                     </div>
                 </div>

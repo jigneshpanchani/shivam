@@ -102,7 +102,7 @@
                                     <div class="uk-width-1-2">
                                         <div class="uk-input-group">
                                             <label>Amount (₹)<span class="req"> * </span></label>
-                                            <input type="number" name="income_amount[]" class="md-input income_amount" min="0" required />
+                                            <input type="number" name="income_amount[]" class="md-input income_amount" min="0" />
                                         </div>
                                     </div>
                                     <div class="uk-width-1-2">
@@ -127,7 +127,7 @@
                             <div class="uk-width-9-10">
                                 <div class="uk-grid">
                                     <div class="uk-width-1-3">
-                                        <select class="expense_id" name="expense_id[]" data-md-selectize data-md-selectize-bottom data-uk-tooltip="{pos:'top'}" title="Select Expense" required>
+                                        <select class="expense_id" name="expense_id[]" data-md-selectize data-md-selectize-bottom data-uk-tooltip="{pos:'top'}" title="Select Expense">
                                             <option value="">Select Expense</option>
                                             @foreach($expenseTypes as $expense)
                                                 <option value="{{ $expense->id }}" {{ ($expense->id==old('expense_id'))?'selected':'' }}>{{ $expense->name }}</option>
@@ -137,7 +137,7 @@
                                     <div class="uk-width-1-3">
                                         <div class="uk-input-group">
                                             <label>Amount (₹)<span class="req"> * </span></label>
-                                            <input type="number" name="expense_amount[]" class="md-input expense_amount" min="0" required />
+                                            <input type="number" name="expense_amount[]" class="md-input expense_amount" min="0" />
                                         </div>
                                     </div>
                                     <div class="uk-width-1-3">

@@ -161,24 +161,28 @@ class WorkController extends Controller
         $work_date = date('Y-m-d', strtotime($data['work_date']));
 
         foreach ($data['income_amount'] as $inc => $income){
-            $incomeTotal = $incomeTotal + $income;
-            $this->income->create([
-                'work_id'   => $work_id,
-                'amount'    => $income,
-                'detail'    => $data['income_detail'][$inc],
-                'work_date' => $work_date
-            ]);
+            if(!empty($income)){
+                $incomeTotal = $incomeTotal + $income;
+                $this->income->create([
+                    'work_id'   => $work_id,
+                    'amount'    => $income,
+                    'detail'    => $data['income_detail'][$inc],
+                    'work_date' => $work_date
+                ]);
+            }
         }
 
         foreach ($data['expense_amount'] as $exp => $expense){
-            $expenseTotal = $expenseTotal + $expense;
-            $this->expense->create([
-                'work_id'   => $work_id,
-                'expense_id'=> $data['expense_id'][$exp],
-                'amount'    => $expense,
-                'detail'    => $data['expense_detail'][$exp],
-                'work_date' => $work_date
-            ]);
+            if(!empty($expense) && !empty($data['expense_id'][$exp])){
+                $expenseTotal = $expenseTotal + $expense;
+                $this->expense->create([
+                    'work_id'   => $work_id,
+                    'expense_id'=> $data['expense_id'][$exp],
+                    'amount'    => $expense,
+                    'detail'    => $data['expense_detail'][$exp],
+                    'work_date' => $work_date
+                ]);
+            }
         }
 
         if($incomeTotal > 0 || $expenseTotal > 0){

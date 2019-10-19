@@ -25,27 +25,42 @@
                                 <th>Bus</th>
                                 <th>Expense (₹)</th>
                                 <th>Detail</th>
+                                <th>Total (₹)</th>
                             </tr>
                             </thead>
+                            @if(count($expenses) > 0)
+                            <tfoot>
+                            <tr>
+                                <th>Page Total<br>(Total)</th>
+                                <th></th>
+                                <th class="sumE">0</th>
+                                <th></th>
+                                <th class="sumT">0</th>
+                            </tr>
+                            </tfoot>
+                            @endif
                             <tbody>
                             @if(count($expenses) > 0)
-                                @foreach($expenses as $row)
-                                    @php
-                                        $detail = array();
-                                        foreach($row['expenses'] as $exp){
-                                            if(($expId != 'all') && ($exp['expense_id'] != $expId)){
-                                                continue;
-                                            }
-                                            $detail[] = $expenseArr[$exp['expense_id']] .' : '. number_format($exp['amount']);
+                            @foreach($expenses as $row)
+                                @php
+                                    $totalExp = 0;
+                                    $detail = array();
+                                    foreach($row['expenses'] as $exp){
+                                        if(($expId != 'all') && ($exp['expense_id'] != $expId)){
+                                            continue;
                                         }
-                                    @endphp
-                                    <tr>
-                                        <td>{{ date('d/m/Y', strtotime($row['work_date'])) }}</td>
-                                        <td>{{ $row['bus']['bus_number'] }}</td>
-                                        <td>{{ number_format($row['expense']) }}</td>
-                                        <td>{{ implode(', ', $detail) }}</td>
-                                    </tr>
-                                @endforeach
+                                        $detail[] = $expenseArr[$exp['expense_id']] .': '. $exp['amount'];
+                                        $totalExp = $totalExp + $exp['amount'];
+                                    }
+                                @endphp
+                                <tr>
+                                    <td>{{ date('d/m/Y', strtotime($row['work_date'])) }}</td>
+                                    <td>{{ $row['bus']['bus_number'] }}</td>
+                                    <td>{{ number_format($row['expense']) }}</td>
+                                    <td>{{ implode(', ', $detail) }}</td>
+                                    <td>{{ number_format($totalExp) }}</td>
+                                </tr>
+                            @endforeach
                             @else
                                 <tr><td colspan="4" class="uk-text-center">No record found</td></tr>
                             @endif
@@ -60,6 +75,15 @@
                                 <th>Income (₹)</th>
                             </tr>
                             </thead>
+                            @if(count($incomes) > 0)
+                            <tfoot>
+                            <tr>
+                                <th>Page Total<br>(Total)</th>
+                                <th></th>
+                                <th class="sumI">0</th>
+                            </tr>
+                            </tfoot>
+                            @endif
                             <tbody>
                             @if(count($incomes) > 0)
                                 @foreach($incomes as $row)
@@ -85,6 +109,17 @@
                                 <th>Amount (₹)</th>
                             </tr>
                             </thead>
+                                @if(count($salaries) > 0)
+                                    <tfoot>
+                                    <tr>
+                                        <th>Page Total<br>(Total)</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th class="sumS">0</th>
+                                    </tr>
+                                    </tfoot>
+                                @endif
                             <tbody>
                             @if(count($salaries) > 0)
                                 @foreach($salaries as $row)
@@ -102,7 +137,7 @@
                             </tbody>
                         @endif
 
-                        @if(isset($works))
+                        @if(isset($works))`
                             <thead>
                             <tr>
                                 <th>Date</th>
@@ -112,6 +147,17 @@
                                 <th>Total (₹)</th>
                             </tr>
                             </thead>
+                            @if(count($works) > 0)
+                                <tfoot>
+                                <tr>
+                                    <th>Page Total<br>(Total)</th>
+                                    <th></th>
+                                    <th class="sumI">0</th>
+                                    <th class="sumE">0</th>
+                                    <th class="sumT">0</th>
+                                </tr>
+                                </tfoot>
+                            @endif
                             <tbody>
                             @if(count($works) > 0)
                                 @foreach($works as $row)
@@ -151,4 +197,42 @@
 
     <!--  datatables functions -->
     <script src="{{ asset('assets/js/pages/plugins_datatables.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/pages/sum().js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready( function () {
+            var table = $('#dt_tableExport').DataTable();
+            calculateTotal();
+            $('#dt_tableExport').on( 'draw.dt', function () {
+                calculateTotal();
+            });
+
+            function calculateTotal() {
+                $.each(getArr(), function (key, value){
+                    let pageTotal = table.column( key, {'page': 'current'}).data().sum();
+                    let total = table.column( key ).data().sum();
+                    let display = currencyFormat(pageTotal)+' <br>('+currencyFormat(total)+')';
+                    $('.sum'+value).html(display);
+                });
+            }
+            function currencyFormat(total) {
+                return total.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+            }
+            function getArr() {
+                let type = '<?= $type; ?>';
+                let arr = [];
+                if(type == 'E'){
+                    arr = { '2':'E', '4':'T' };
+                }else if(type == 'I'){
+                    arr = { '2':'I' };
+                }else if(type == 'S'){
+                    arr = { '4':'S' };
+                }else{
+                    arr = { '2':'E', '3':'I', '4':'T' };
+                }
+                return arr;
+            }
+        });
+    </script>
 @endpush
