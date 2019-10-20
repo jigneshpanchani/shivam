@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account_detail;
 use App\Models\Bus;
 use App\Models\Expense;
 use App\Models\Income;
@@ -16,7 +17,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Staff $staff, Bus $bus, Work $work, Income $income, Expense $expense)
+    public function index(Staff $staff, Bus $bus, Work $work, Income $income, Expense $expense, Account_detail $account_detail)
     {
         $today = date('Y-m-d');
         $previousDate = date('Y-m-d', strtotime('-1 days'));
@@ -42,7 +43,11 @@ class HomeController extends Controller
             $bus->income = $work->where('bus_id', $bus->id)->sum('income');
             $bus->expense = $work->where('bus_id', $bus->id)->sum('expense');
             $bus->total = $bus->income - $bus->expense;
-            $bus->silak = $bus->balance + $bus->total;
+
+            $bus->pCredit = $account_detail->where(['type'=>'C', 'bus_id'=>$bus->id])->sum('amount');
+            $bus->pDedit = $account_detail->where(['type'=>'D', 'bus_id'=>$bus->id])->sum('amount');
+
+            $bus->silak = ($bus->balance + $bus->total + $bus->pCredit) - ($bus->pDedit);
         }
         $data['buses'] = $busArr;
 

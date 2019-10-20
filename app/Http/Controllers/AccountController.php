@@ -33,7 +33,7 @@ class AccountController extends Controller
 
     public function create(){
         $data['partners'] = $this->partner->pluck('name', 'id');
-        $data['buses'] = $this->bus->pluck('bus_number','id');
+        //$data['buses'] = $this->bus->pluck('bus_number','id');
         return view('account.create', $data);
     }
 
@@ -41,12 +41,10 @@ class AccountController extends Controller
     {
         try{
             $validator = \Validator::make($request->all(),[
-                'partner_id'    => 'required',
-                'date'          => 'required',
-                'add_bid'       => 'required|array',
-                'add_amount'    => 'required|array',
-                'wd_bid'        => 'required|array',
-                'wd_amount'     => 'required|array'
+                'partner_id'=> 'required',
+                'date'      => 'required',
+                'bid'       => 'required|array',
+                'amount'    => 'required|array'
             ]);
             if($validator->fails()){
                 return redirect()->route('account.create')->withErrors($validator)->withInput();
@@ -57,7 +55,7 @@ class AccountController extends Controller
             }
             $account_id = $this->model->create($accountArr)->id;
 
-            $dataArr = $request->only('partner_id', 'date', 'add_bid', 'add_amount', 'add_detail', 'wd_bid', 'wd_amount', 'wd_detail');
+            $dataArr = $request->only('partner_id', 'date', 'amount_type', 'bid', 'amount', 'detail');
             $res = $this->addWorkReport($account_id, $dataArr);
 
             if($res){
@@ -92,11 +90,11 @@ class AccountController extends Controller
     public function destroy($id, Log $log)
     {
         try{
-            $work = $this->model->findOrFail($id);
-            $res = $work->delete($id);
+            $account = $this->model->findOrFail($id);
+            $res = $account->delete($id);
             if($res){
-                $log->addLog($work, 'Delete', 'Work delete');
-                return response()->json(['title' => 'Deleted!', 'status' => 'success', 'msg' => 'Work report delete successfully.']);
+                $log->addLog($account, 'Delete', 'Account report delete');
+                return response()->json(['title' => 'Deleted!', 'status' => 'success', 'msg' => 'Account report delete successfully.']);
             }else{
                 return response()->json(['title' => 'Not Deleted!', 'status' => 'error', 'msg' => 'Oops...Something want wrong. Please try again.']);
             }
@@ -106,44 +104,41 @@ class AccountController extends Controller
     }
 
     public function addWorkReport($account_id, $data){
-
-        $addAmountTotal = $wdAmountTotal = 0;
+//echo "<pre>";print_r($data);die;
+        $amountTotal = 0;
         $date = date('Y-m-d', strtotime($data['date']));
 
-        foreach ($data['add_amount'] as $add => $addAmount){
-            if(!empty($addAmount)){
-                $addAmountTotal = $addAmountTotal + $addAmount;
+        foreach ($data['amount'] as $key => $amount){
+            if(!empty($amount)){
+                $amountTotal = $amountTotal + $amount;
                 $this->adetail->create([
                     'account_id'=> $account_id,
-                    'bus_id'    => $data['add_bid'][$add],
-                    'type'      => 'C',
-                    'amount'    => $addAmount,
-                    'detail'    => $data['add_detail'][$add],
+                    'bus_id'    => $data['bid'][$key],
+                    'type'      => $data['amount_type'],
+                    'amount'    => $amount,
+                    'detail'    => $data['detail'][$key],
                     'date'      => $date
                 ]);
             }
         }
 
-        foreach ($data['wd_amount'] as $wd => $wdAmount){
-            if(!empty($wdAmount) && !empty($data['expense_id'][$wd])){
-                $wdAmountTotal = $wdAmountTotal + $wdAmount;
-                $this->adetail->create([
-                    'account_id'=> $account_id,
-                    'bus_id'    => $data['wd_bid'][$wd],
-                    'type'      => 'D',
-                    'amount'    => $wdAmountTotal,
-                    'detail'    => $data['wd_detail'][$add],
-                    'date'      => $date
-                ]);
-            }
-        }
-
-        if($addAmountTotal > 0 || $wdAmountTotal > 0){
-            $workReport = $this->model->findOrFail($account_id);
-            return $workReport->update(['credit'=>$addAmountTotal, 'debit'=>$wdAmountTotal]);
+        if($amountTotal > 0){
+            $accountReport = $this->model->findOrFail($account_id);
+            $field = ($data['amount_type'] == 'C')?'credit':'debit';
+            return $accountReport->update([$field=>$amountTotal]);
         }
 
         return FALSE;
     }
 
+    public function getBusList(Request $request, Partner $partner, Bus $bus){
+
+        $partnerID = $request->post('partnerId');
+        $busIdArr = $partner->find($partnerID)->bus_ids;
+        $buses = $bus->whereIn('id', json_decode($busIdArr))->pluck('bus_number','id');
+        foreach ($buses as $id=>$number){
+            $buses[$id] = trim(str_replace(' - ', ' ', substr($number, -9)));
+        }
+        return response()->json(['status' => 'success', 'buses' => $buses]);
+    }
 }

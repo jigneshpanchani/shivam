@@ -146,6 +146,14 @@
                                 <td>₹{{ number_format($bus->total) }}</td>
                             </tr>
                             <tr>
+                                <td>Owner add</td>
+                                <td>₹{{ number_format($bus->pCredit) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Owner w/d</td>
+                                <td>₹{{ number_format($bus->pDedit) }}</td>
+                            </tr>
+                            <tr>
                                 <td>Closed Balance</td>
                                 <td>₹{{ number_format($bus->silak) }}</td>
                             </tr>

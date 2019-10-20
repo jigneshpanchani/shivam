@@ -17,12 +17,21 @@
                 <thead>
                 <tr>
                     <th width="25%">Date</th>
-                    <th width="25%">Partner</th>
-                    <th width="20%">Credit(₹)</th>
-                    <th width="20%">Debit(₹)</th>
+                    <th width="25%">Partner Name</th>
+                    <th width="20%">Deposit (₹)</th>
+                    <th width="20%">Withdrawal (₹)</th>
                     <th width="10%">Action</th>
                 </tr>
                 </thead>
+                @if(count($accounts) > 0)
+                    <tfoot>
+                    <th>Page Total<br>(Total)</th>
+                    <th></th>
+                    <th class="sumD">0</th>
+                    <th class="sumW">0</th>
+                    <th></th>
+                    </tfoot>
+                @endif
                 <tbody>
                 @if(count($accounts) > 0)
                 @foreach($accounts as $row)
@@ -50,7 +59,7 @@
     <!-- datatables buttons-->
     <script src="{{ asset('bower_components/datatables-buttons/js/dataTables.buttons.js') }}"></script>
     <script src="{{ asset('assets/js/custom/datatables/buttons.uikit.js') }}"></script>
-    <script src="{{ asset('bower_components/jszip/dist/jszip.min.js') }}"></script>
+{{--    <script src="{{ asset('bower_components/jszip/dist/jszip.min.js') }}"></script>--}}
     <script src="{{ asset('bower_components/datatables-buttons/js/buttons.html5.js') }}"></script>
     <script src="{{ asset('bower_components/datatables-buttons/js/buttons.print.js') }}"></script>
 
@@ -60,8 +69,15 @@
     <!--  datatables functions -->
     <script src="{{ asset('assets/js/pages/plugins_datatables.min.js') }}"></script>
 
+    <script src="{{ asset('assets/js/pages/sum().js') }}"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
+            var table = $('#dt_tableExport').DataTable();
+            calculateTotal();
+            $('#dt_tableExport').on( 'draw.dt', function () {
+                calculateTotal();
+            });
             $('body').on('click', '.deleteRecord', function () {
                 let rowId = $(this).attr('data-id');
                 deleteRecord(rowId);
@@ -96,6 +112,18 @@
                         });
                     }
                 })
+            }
+            function calculateTotal() {
+                let arr = {'2':'D', '3':'W'};
+                $.each(arr, function (key, value){
+                    let pageTotal = table.column( key, {'page': 'current'}).data().sum();
+                    let total = table.column( key ).data().sum();
+                    let display = currencyFormat(pageTotal)+' <br>('+currencyFormat(total)+')';
+                    $('.sum'+value).html(display);
+                });
+            }
+            function currencyFormat(total) {
+                return total.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
             }
         });
     </script>

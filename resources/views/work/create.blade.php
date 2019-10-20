@@ -180,10 +180,10 @@
                 totalIncome();
                 totalExpense();
             });
-            $(document).on('keyup', '.income_amount', function () {
+            $(document).on('keyup click', '.income_amount', function () {
                 totalIncome();
             });
-            $(document).on('keyup', '.expense_amount', function () {
+            $(document).on('keyup click', '.expense_amount', function () {
                 totalExpense();
             });
             $(document).on('click', '.plusBtn', function () {

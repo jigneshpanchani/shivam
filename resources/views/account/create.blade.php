@@ -41,10 +41,19 @@
                         </div>
                         <br><br>
                         <div class="uk-grid" data-uk-grid-margin>
-                            <div class="uk-width-medium-1-2">
+                            <div class="uk-width-medium-2-3">
+                                <div class="parsley-row">
+                                    <span class="icheck-inline">
+                                        <input type="radio" name="amount_type" value="C" id="amount_type_1" data-md-icheck />
+                                        <label for="amount_type_1" class="inline-label">Deposit</label>
+                                    </span>
+                                    <span class="icheck-inline">
+                                        <input type="radio" name="amount_type" value="D" id="amount_type_2" data-md-icheck checked />
+                                        <label for="amount_type_2" class="inline-label">Withdrawal</label>
+                                    </span>
+                                </div>
                                 <div class="md-card">
                                     <div class="md-card-content">
-                                        <h3 class="heading_a">Add to company</h3>
                                         <div class="uk-grid" data-uk-grid-margin>
                                             <div class="uk-width-medium-1-1">
                                                 <div data-dynamic-fields="field_template_a"></div>
@@ -53,34 +62,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="uk-width-medium-1-2">
-                                <div class="md-card">
-                                    <div class="md-card-content">
-                                        <h3 class="heading_a">Withdrawal</h3>
-                                        <div class="uk-grid" data-uk-grid-margin>
-                                            <div class="uk-width-medium-1-1">
-                                                <div data-dynamic-fields="field_template_b"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="uk-width-medium-1-3">
+                                <div class="parsley-row">
+                                    <label for="note">Extra Note</label>
+                                    <textarea class="md-input" name="note" cols="10" rows="4">{{old('note')}}</textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="uk-grid" data-uk-grid-margin>
                             <div class="uk-width-medium-1-3">
                                 <div class="uk-input-group">
-                                    <span class="uk-input-group-addon">Total Add Amount (₹)</span>
-                                    <input type="text" name="total_add" id="total_add" value="{{ old('total_add') ? old('total_add') : 0 }}" class="md-input uk-text-right" readonly/>
-                                </div>
-                                <div class="uk-input-group">
-                                    <span class="uk-input-group-addon">Total Withdrawal (₹)</span>
-                                    <input type="text" name="total_withdrawal" id="total_withdrawal" value="{{ old('total_withdrawal') ? old('total_withdrawal') : 0 }}" class="md-input uk-text-right" readonly/>
-                                </div>
-                            </div>
-                            <div class="uk-width-medium-2-3">
-                                <div class="parsley-row">
-                                    <label for="note">Extra Note</label>
-                                    <textarea class="md-input" name="note" cols="10" rows="3">{{old('note')}}</textarea>
+                                    <span class="uk-input-group-addon">Total Amount (₹)</span>
+                                    <input type="text" name="total_amount" id="total_amount" value="{{ old('total_amount') ? old('total_amount') : 0 }}" class="md-input uk-text-right" readonly/>
                                 </div>
                             </div>
                         </div>
@@ -96,58 +89,20 @@
                             <div class="uk-width-9-10">
                                 <div class="uk-grid">
                                     <div class="uk-width-1-3">
-                                        <select class="add_bid" name="add_bid[]" data-md-selectize data-md-selectize-bottom data-uk-tooltip="{pos:'top'}" title="Select Bus">
+                                        <select class="bus_list" name="bid[]">
                                             <option value="">Select Bus</option>
-                                            @foreach($buses as $bid=>$bus)
-                                                <option value="{{ $bid }}" {{ ($bid==old('add_bid'))?'selected':'' }}>{{ str_replace(' - ', '.', $bus) }}</option>
-                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="uk-width-1-3">
                                         <div class="uk-input-group">
                                             <label>Amount (₹)<span class="req"> * </span></label>
-                                            <input type="number" name="add_amount[]" class="md-input add_amount" min="0" />
+                                            <input type="number" name="amount[]" class="md-input amount" min="0" />
                                         </div>
                                     </div>
                                     <div class="uk-width-1-3">
                                         <div class="parsley-row">
                                             <label>Detail</label>
-                                            <input type="text" name="add_detail[]" class="md-input add_detail" value="" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="uk-width-1-10 uk-text-center">
-                                <div class="uk-vertical-align uk-height-1-1">
-                                    <div class="uk-vertical-align-middle">
-                                        <a href="forms_dynamic.html#" class="btnSectionClone"><i class="material-icons md-36">&#xE146;</i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </script>
-                    <script id="field_template_b" type="text/x-handlebars-template">
-                        <div class="uk-grid uk-grid-medium form_section" data-uk-grid-match>
-                            <div class="uk-width-9-10">
-                                <div class="uk-grid">
-                                    <div class="uk-width-1-3">
-                                        <select class="wd_bid" name="wd_bid[]" data-md-selectize data-md-selectize-bottom data-uk-tooltip="{pos:'top'}" title="Select Expense">
-                                            <option value="">Select Bus</option>
-                                            @foreach($buses as $bid=>$bus)
-                                                <option value="{{ $bid }}" {{ ($bid==old('wd_bid'))?'selected':'' }}>{{ str_replace(' - ', ' ', $bus) }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="uk-width-1-3">
-                                        <div class="uk-input-group">
-                                            <label>Amount (₹)<span class="req"> * </span></label>
-                                            <input type="number" name="wd_amount[]" class="md-input wd_amount" min="0" />
-                                        </div>
-                                    </div>
-                                    <div class="uk-width-1-3">
-                                        <div class="parsley-row">
-                                            <label>Detail</label>
-                                            <input type="text" name="wd_detail[]" class="md-input wd_detail" value="" />
+                                            <input type="text" name="detail[]" class="md-input detail" value="" />
                                         </div>
                                     </div>
                                 </div>
@@ -174,81 +129,55 @@
         $(document).ready( function () {
 
             $(document).on('click', '.btnSectionRemove', function () {
-                totalIncome();
-                totalExpense();
-            });
-            $(document).on('keyup', '.add_amount', function () {
-                totalIncome();
-            });
-            $(document).on('keyup', '.wd_amount', function () {
-                totalExpense();
-            });
-
-            function totalIncome() {
-                let income = 0;
-                $(document).find('.add_amount').each(function (key, value){
-                    if(parseInt($(this).val()) > 0){
-                        income = income + parseInt($(this).val());
-                    }
-                });
-                $('#total_add').val(income);
                 totalAmount();
-            }
-            function totalExpense() {
-                let expense = 0;
-                $(document).find('.wd_amount').each(function (key, value){
-                    if(parseInt($(this).val()) > 0) {
-                        expense = expense + parseInt($(this).val());
-                    }
-                });
-                $('#total_withdrawal').val(expense);
+            });
+            $(document).on('keyup click', '.amount', function () {
                 totalAmount();
-            }
-            function totalAmount() {
-               let income = $('#total_add').val();
-               let expense = $('#total_withdrawal').val();
-               let total = parseInt(income) - parseInt(expense);
-               $('#total').val(total)
-            }
-
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready( function () {
-
-
+            });
             $('body').on('change', '#partner_id', function () {
-                let pId = $('option:selected', this).val();
-                //getPartnerData(pId);
+                let partnerId = $('option:selected', this).val();
+                getPartnerData(partnerId);
             });
 
-            function appendArr() {
-                //var member = '<?php json_encode($staff); ?>';
-                $('select').selectize({
-                    //maxItems: null,
-                    valueField: 'id',
-                    labelField: 'title',
-                    searchField: 'title',
-                    options: [{
-                        id: 1,
-                        title: 'case1'
-                    }, {
-                        id: 2,
-                        title: 'case2'
-                    }],
-                    create: false
+            $(document).on('click', '.plusBtn', function () {
+                $('#partner_id').trigger('change');
+            });
+
+            function totalAmount() {
+                let amount = 0;
+                $(document).find('.amount').each(function (key, value){
+                    if(parseInt($(this).val()) > 0){
+                        amount = amount + parseInt($(this).val());
+                    }
                 });
+                $('#total_amount').val(amount);
             }
-            function getStaffData(pId) {
+            function getPartnerData(partnerId) {
                 $.ajax({
-                    url: "<?= route('partner-bus'); ?>",
+                    url: "<?= route('partner-buses'); ?>",
                     type: 'POST',
-                    data: { "partnerId": pId, "_token": "{{ csrf_token() }}" },
+                    data: { "partnerId": partnerId, "_token": "{{ csrf_token() }}" },
                     success: function (data){
-                        appendArr(data.bus);
+                        let optionHtml = '<option value="">Select Bus</option>';
+                        $.each(data.buses, function(key, val){
+                            optionHtml += '<option value="'+key+'">'+val+'</option>';
+                        });
+                        $('.bus_list').html(optionHtml);
+                        /*let options = [];
+                        $.each(data.buses, function(key, val){
+                            options.push({id: key, title: val})
+                        });
+                        $('.bus_list').selectize({
+                            valueField: 'id',
+                            labelField: 'title',
+                            searchField: 'title',
+                            options: options,
+                            create: false
+                        });*/
                     }
                 });
             }
+
         });
     </script>
 @endpush

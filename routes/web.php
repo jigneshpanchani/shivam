@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/remove-history', 'HistoryController@remove')->name('remove-history');
     Route::get('/report', 'ReportController@index')->name('report');
     Route::post('/report-generate', 'ReportController@generate')->name('report-generate');
+    Route::post('/partner-buses', 'AccountController@getBusList')->name('partner-buses');
 
 
     Route::resource('bus', 'BusController');

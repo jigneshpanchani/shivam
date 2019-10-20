@@ -30,6 +30,7 @@
                         <td>{{ $row['contact_no'] }}</td>
                         <td>{{ $row['address'] }}</td>
                         <td>
+                            <a href="{{ route('partner.show', $row['id']) }}" class="uk-margin-left" title="Show"><i class="uk-icon-eye uk-icon-small"></i></a>
                             <a href="{{ route('partner.edit', $row['id']) }}" class="uk-margin-left" title="Edit"><i class="uk-icon-edit uk-icon-small"></i></a>
                             <a href="javascript:void(0);" title="Delete" data-id="{{ $row['id'] }}" class="uk-margin-left deleteRecord"><i class="material-icons md-24">&#xE872;</i></a>
                         </td>

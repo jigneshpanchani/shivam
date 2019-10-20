@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
 use App\Models\Bus;
 use App\Models\Partner;
 use App\Models\Log;
@@ -52,9 +53,24 @@ class PartnerController extends Controller
         }
     }
 
-    public function show($id)
+    public function show($id, Account $account)
     {
-        //
+        $result = $this->model->find($id);
+        if($result){
+            $data['result'] = $result;
+            $data['deposits'] = $account->where('partner_id', $id)->where('credit','>',0)->get();
+            $data['withdrawals'] = $account->where('partner_id', $id)->where('debit','>',0)->get();
+
+            $data['deposit_total'] = $account->where('partner_id', $id)->sum('credit');
+            $data['withdrawal_total'] = $account->where('partner_id', $id)->sum('debit');
+//
+//            $data['totalSal'] = $salary->where(['staff_id'=>$id, 'income_type'=>'S'])->sum('amount');
+//            $data['totalWdl'] = $salary->where(['staff_id'=>$id, 'income_type'=>'W'])->sum('amount');
+//            $data['total'] = ($data['totalSal'] - $data['totalWdl']) + ($result['balance']);
+            return view('partner.show', $data);
+        }else{
+            return redirect()->route('partner.index');
+        }
     }
 
     public function edit($id)
