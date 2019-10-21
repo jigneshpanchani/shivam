@@ -104,7 +104,7 @@ class AccountController extends Controller
     }
 
     public function addWorkReport($account_id, $data){
-//echo "<pre>";print_r($data);die;
+
         $amountTotal = 0;
         $date = date('Y-m-d', strtotime($data['date']));
 
