@@ -120,19 +120,22 @@
                 <div class="md-card-toolbar">
                     <div class="md-card-toolbar-actions">
                         <i class="md-icon material-icons md-card-fullscreen-activate">&#xE5D0;</i>
+                        <i class="md-icon material-icons invoice_print">&#xE8ad;</i>
                         <i class="md-icon material-icons md-card-toggle">&#xE316;</i>
-                        <i class="md-icon material-icons md-card-close">&#xE14C;</i>
+                        {{--<i class="md-icon material-icons md-card-close">&#xE14C;</i>--}}
                     </div>
                     <h3 class="md-card-toolbar-heading-text uk-text-primary">
                         {{ trim(str_replace(' - ', ' ', substr($bus->bus_number, -9))) }}
                     </h3>
                 </div>
-                <div class="md-card-content">
-                    <table class="uk-table uk-table-hover">
-                        <tbody>
+                <div class="md-card-content bus_overview">
+                    <table class="uk-table uk-table-hover" width="100%">
+                        <thead>
                             <tr>
                                 <th class="uk-text-primary" colspan="2">{{ $bus->bus_number }}</th>
                             </tr>
+                        </thead>
+                        <tbody>
                             <tr>
                                 <td>Income</td>
                                 <td>₹{{ number_format($bus->income) }}</td>
@@ -180,4 +183,15 @@
     <!--  dashbord functions -->
     <script src="{{ asset('assets/js/pages/dashboard.min.js') }}"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('body').on('click', '.invoice_print', function () {
+                let html = $(this).closest('.md-card').find('.bus_overview').html();
+                newWin= window.open("");
+                newWin.document.write(html);
+                newWin.print();
+                newWin.close();
+            });
+        });
+    </script>
 @endpush

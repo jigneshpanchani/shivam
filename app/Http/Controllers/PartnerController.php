@@ -58,9 +58,10 @@ class PartnerController extends Controller
         $result = $this->model->find($id);
         if($result){
             $data['result'] = $result;
-            $data['deposits'] = $account->where('partner_id', $id)->where('credit','>',0)->get();
-            $data['withdrawals'] = $account->where('partner_id', $id)->where('debit','>',0)->get();
+            $data['deposits'] = $account->with('details')->where('partner_id', $id)->where('credit','>',0)->get();
+            $data['withdrawals'] = $account->with('details')->where('partner_id', $id)->where('debit','>',0)->get();
 
+            //echo "<pre>";print_r($data);die;
             $data['deposit_total'] = $account->where('partner_id', $id)->sum('credit');
             $data['withdrawal_total'] = $account->where('partner_id', $id)->sum('debit');
 //

@@ -17,4 +17,8 @@ class Account extends Model
     public function partner(){
         return $this->belongsTo(Partner::class);
     }
+
+    public function details(){
+        return $this->hasMany(Account_detail::class);
+    }
 }

@@ -31,7 +31,7 @@
                             @if(count($expenses) > 0)
                             <tfoot>
                             <tr>
-                                <th>Page Total<br>(Total)</th>
+                                <th>Page Total <br>(Total)</th>
                                 <th></th>
                                 <th class="sumE">0</th>
                                 <th></th>
@@ -49,15 +49,15 @@
                                         if(($expId != 'all') && ($exp['expense_id'] != $expId)){
                                             continue;
                                         }
-                                        $detail[] = $expenseArr[$exp['expense_id']] .': '. $exp['amount'];
+                                        $detail[] = $expenseArr[$exp['expense_id']] .': '. number_format($exp['amount']) . (!empty($exp['detail']) ? ' ('.$exp['detail'].')' : '');
                                         $totalExp = $totalExp + $exp['amount'];
                                     }
                                 @endphp
                                 <tr>
                                     <td>{{ date('d/m/Y', strtotime($row['work_date'])) }}</td>
-                                    <td>{{ $row['bus']['bus_number'] }}</td>
+                                    <td>{{ str_replace(' - ', '.', $row['bus']['bus_number']) }}</td>
                                     <td>{{ number_format($row['expense']) }}</td>
-                                    <td>{{ implode(', ', $detail) }}</td>
+                                    <td><?= nl2br(implode('<br> ', $detail)); ?></td>
                                     <td>{{ number_format($totalExp) }}</td>
                                 </tr>
                             @endforeach
@@ -78,7 +78,7 @@
                             @if(count($incomes) > 0)
                             <tfoot>
                             <tr>
-                                <th>Page Total<br>(Total)</th>
+                                <th>Page Total <br>(Total)</th>
                                 <th></th>
                                 <th class="sumI">0</th>
                             </tr>
@@ -89,7 +89,7 @@
                                 @foreach($incomes as $row)
                                     <tr>
                                         <td>{{ date('d/m/Y', strtotime($row['work_date'])) }}</td>
-                                        <td>{{ $row['bus']['bus_number'] }}</td>
+                                        <td>{{ str_replace(' - ', '.', $row['bus']['bus_number']) }}</td>
                                         <td>{{ number_format($row['income']) }}</td>
                                     </tr>
                                 @endforeach
@@ -112,7 +112,7 @@
                                 @if(count($salaries) > 0)
                                     <tfoot>
                                     <tr>
-                                        <th>Page Total<br>(Total)</th>
+                                        <th>Page Total <br>(Total)</th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
@@ -150,7 +150,7 @@
                             @if(count($works) > 0)
                                 <tfoot>
                                 <tr>
-                                    <th>Page Total<br>(Total)</th>
+                                    <th>Page Total <br>(Total)</th>
                                     <th></th>
                                     <th class="sumI">0</th>
                                     <th class="sumE">0</th>
@@ -163,7 +163,7 @@
                                 @foreach($works as $row)
                                     <tr>
                                         <td>{{ date('d/m/Y', strtotime($row['work_date'])) }}</td>
-                                        <td>{{ $row['bus']['bus_number'] }}</td>
+                                        <td>{{ str_replace(' - ', '.', $row['bus']['bus_number']) }}</td>
                                         <td>{{ number_format($row['income']) }}</td>
                                         <td>{{ number_format($row['expense']) }}</td>
                                         <td>{{ number_format($row['income'] - $row['expense']) }}</td>
