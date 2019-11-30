@@ -41,7 +41,7 @@ class SalaryController extends Controller
             if($validator->fails()){
                 return redirect()->route('salary.create')->withErrors($validator)->withInput();
             }
-            $inputArr = $request->only('date', 'staff_id', 'salary', 'income_type');
+            $inputArr = $request->only('date', 'staff_id', 'salary', 'income_type', 'detail');
             $res = $this->addSalary($inputArr);
             if($res){
                 $request->session()->flash('success', 'Salary add successfully');
@@ -81,7 +81,7 @@ class SalaryController extends Controller
             if($validator->fails()){
                 return redirect()->route('salary.edit', $id)->withErrors($validator)->withInput();
             }
-            $updateArr = $request->only('date', 'amount');
+            $updateArr = $request->only('date', 'amount', 'detail');
             if(!empty($request->date)){
                 $updateArr['date'] = Carbon::parse($request->date)->format('Y-m-d');
             }
@@ -119,7 +119,7 @@ class SalaryController extends Controller
         $userID = Auth::user()->id;
         $dataSet = array();
         foreach ($data['staff_id'] as $k =>$staff_id){
-            $dataSet[] = ['staff_id'=>$staff_id, 'income_type'=>$data['income_type'], 'amount'=>$data['salary'][$k], 'date'=>$date, 'created_by'=>$userID];
+            $dataSet[] = ['staff_id'=>$staff_id, 'income_type'=>$data['income_type'], 'amount'=>$data['salary'][$k], 'date'=>$date, 'detail'=>$data['detail'][$k], 'created_by'=>$userID];
         }
         return DB::table('salaries')->insert($dataSet);
     }

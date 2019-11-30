@@ -52,6 +52,12 @@
                             <input type="number" name="amount" value="{{ (!empty($result['amount'])) ? $result['amount'] : old('amount') }}" class="md-input" id="amount" min="0" required/>
                         </div>
                     </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="uk-form-row parsley-row">
+                            <label>Detail</label>
+                            <input type="text" name="detail" value="{{ (!empty($result['detail'])) ? $result['detail'] : old('detail') }}" class="md-input" id="detail" />
+                        </div>
+                    </div>
                 </div>
                 <div class="uk-grid">
                     <div class="uk-width-1-1 uk-text-right">

@@ -62,7 +62,7 @@
                                 </tr>
                             @endforeach
                             @else
-                                <tr><td colspan="4" class="uk-text-center">No record found</td></tr>
+                                <tr><td colspan="5" class="uk-text-center">No record found</td></tr>
                             @endif
                             </tbody>
                         @endif
@@ -73,6 +73,7 @@
                                 <th>Date</th>
                                 <th>Bus</th>
                                 <th>Income (₹)</th>
+                                <th>Detail</th>
                             </tr>
                             </thead>
                             @if(count($incomes) > 0)
@@ -81,20 +82,28 @@
                                 <th>Page Total <br>(Total)</th>
                                 <th></th>
                                 <th class="sumI">0</th>
+                                <th></th>
                             </tr>
                             </tfoot>
                             @endif
                             <tbody>
                             @if(count($incomes) > 0)
                                 @foreach($incomes as $row)
+                                    @php
+                                        $incDetail = array();
+                                        foreach($row['incomes'] as $inc){
+                                            $incDetail[] = number_format($inc['amount']) . (!empty($inc['detail']) ? ' ('.$inc['detail'].')' : '');
+                                        }
+                                    @endphp
                                     <tr>
                                         <td>{{ date('d/m/Y', strtotime($row['work_date'])) }}</td>
                                         <td>{{ str_replace(' - ', '.', $row['bus']['bus_number']) }}</td>
                                         <td>{{ number_format($row['income']) }}</td>
+                                        <td><?= nl2br(implode('<br> ', $incDetail)); ?></td>
                                     </tr>
                                 @endforeach
                             @else
-                                <tr><td colspan="3" class="uk-text-center">No record found</td></tr>
+                                <tr><td colspan="4" class="uk-text-center">No record found</td></tr>
                             @endif
                             </tbody>
                         @endif

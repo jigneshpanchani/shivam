@@ -103,7 +103,7 @@ class ReportController extends Controller
 
         }elseif($type == 'I'){
 
-            $iQuery = $this->work->with('bus')->whereBetween('work_date',[$start, $end]);
+            $iQuery = $this->work->with(['bus','incomes'])->whereBetween('work_date',[$start, $end]);
             if($bId == 'all') {
                 $title .= "all buses's Income";
             }else{

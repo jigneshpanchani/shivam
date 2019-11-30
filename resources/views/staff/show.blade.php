@@ -57,6 +57,7 @@
                                     <tr>
                                         <th>Date</th>
                                         <th>Amount (₹)</th>
+                                        <th>Detail</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -65,6 +66,7 @@
                                             <tr>
                                                 <td>{{ date('d/m/Y', strtotime($row['date'])) }}</td>
                                                 <td>{{ number_format($row['amount']) }}</td>
+                                                <td>{{ $row['detail'] }}</td>
                                             </tr>
                                         @endforeach
                                     @else
@@ -93,7 +95,7 @@
                                             <tr>
                                                 <td>{{ date('d/m/Y', strtotime($row['date'])) }}</td>
                                                 <td>{{ number_format($row['amount']) }}</td>
-                                                <td>-</td>
+                                                <td>{{ $row['detail'] }}</td>
                                             </tr>
                                         @endforeach
                                     @else

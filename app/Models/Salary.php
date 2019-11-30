@@ -10,6 +10,7 @@ class Salary extends Model
         'staff_id',
         'amount',
         'date',
+        'detail',
         'created_by'
     ];
 

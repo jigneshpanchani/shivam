@@ -54,7 +54,7 @@
                         <div class="uk-grid uk-grid-medium form_section" data-uk-grid-match>
                             <div class="uk-width-9-10">
                                 <div class="uk-grid">
-                                    <div class="uk-width-1-4">
+                                    <div class="uk-width-1-6">
                                         <select class="staff_id" name="staff_id[]" data-md-selectize data-md-selectize-bottom data-uk-tooltip="{pos:'top'}" title="Select Staff Member" required>
                                             <option value="">Select Member</option>
                                             @foreach($staff as $member)
@@ -62,7 +62,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="uk-width-1-4">
+                                    <div class="uk-width-1-6">
                                         <div class="parsley-row">
                                             <label>Department</label>
                                             <input type="text" name="department[]" class="md-input department" value="- - - -" disabled>
@@ -77,7 +77,7 @@
                                     <div class="uk-width-1-6">
                                         <div class="parsley-row">
                                             <label>Withdrawal</label>
-                                            <input type="text" name="withdrawal[]" class="md-input withdrawal" value="0" disabled>
+                                            <input type="text" name="withdrawal[]" class="md-input withdrawal" value="0" disabled />
                                         </div>
                                     </div>
                                     <div class="uk-width-1-6">
@@ -85,6 +85,12 @@
                                             <label>Salary (₹)<span class="req"> * </span></label>
                                             {{--<input type="text" name="salary[]" class="md-input masked_input label-fixed" id="masked_currency" data-inputmask="'alias': 'currency', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': true, 'prefix': false, 'placeholder': '0'" data-inputmask-showmaskonhover="false" />--}}
                                             <input type="number" name="salary[]" class="md-input" min="0" required />
+                                        </div>
+                                    </div>
+                                    <div class="uk-width-1-6">
+                                        <div class="parsley-row">
+                                            <label>Detail</label>
+                                            <input type="text" name="detail[]" class="md-input detail" value="" />
                                         </div>
                                     </div>
                                 </div>
