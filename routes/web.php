@@ -10,9 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-if(date('Y') == '2019'){
-    abort('404');
-}else{
+
+if(time() < env('ACTIVATION_KEY')){
 
     Route::get('/', function () {
         return redirect()->route('home');
@@ -43,4 +42,6 @@ if(date('Y') == '2019'){
         Route::resource('account', 'AccountController');
     });
 
+}else{
+    abort('404');
 }

@@ -9,7 +9,7 @@
     <link rel="icon" type="image') }}" href="{{ asset('assets/img/favicon.png') }}" sizes="16x16">
     <link rel="icon" type="image') }}" href="{{ asset('assets/img/favicon.png') }}" sizes="32x32">
 
-    <title>{{ config('app.name') }} - 404 error</title>
+    <title>{{ config('app.name') }} - key expired</title>
 
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
 
@@ -24,7 +24,8 @@
 
 <div class="error_page_header">
     <div class="uk-width-8-10 uk-container-center">
-        404 - Key expired!
+        <img class="logo_regular" src="{{ asset('assets/img/bg_logo.png') }}" alt="" width="150"/>
+        key expired!
     </div>
 </div>
 <div class="error_page_content">
