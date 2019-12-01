@@ -31,7 +31,7 @@
                     <div class="uk-width-medium-1-6">
                         <div class="parsley-row">
                             <label>Opening Balance (₹)<span class="req"> * </span></label>
-                            <input type="number" name="balance" value="{{ (!empty($result['balance'])) ? $result['balance'] : old('balance') }}" class="md-input" required />
+                            <input type="text" name="balance" value="{{ (!empty($result['balance'])) ? $result['balance'] : old('balance') }}" class="md-input" required />
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <div class="uk-width-medium-1-6">
                         <div class="uk-input-group">
                             <label>Salary(₹)<span class="req"> * </span></label>
-                            <input type="number" name="salary" value="{{ (!empty($result['salary'])) ? $result['salary'] : old('salary') }}" class="md-input" required />
+                            <input type="text" name="salary" value="{{ (!empty($result['salary'])) ? $result['salary'] : old('salary') }}" class="md-input" required />
                         </div>
                     </div>
                 </div>

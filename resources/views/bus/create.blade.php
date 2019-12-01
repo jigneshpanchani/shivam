@@ -28,7 +28,7 @@
                     <div class="uk-width-medium-1-3">
                         <div class="parsley-row">
                             <label>Opening Balance (₹)<span class="req"> * </span></label>
-                            <input type="number" name="balance" value="{{ old('balance') ? old('balance') : 0 }}" class="md-input" required />
+                            <input type="text" name="balance" value="{{ old('balance') ? old('balance') : 0 }}" class="md-input" required />
                         </div>
                     </div>
                 </div>
@@ -56,12 +56,12 @@
                     <div class="uk-width-1-3">
                         <div class="uk-input-group">
                             <span class="uk-input-group-addon">Fuel Capacity (Ltr.)</span>
-                            <input type="number" name="fuel_capacity" id="fuel_capacity" value="{{ old('fuel_capacity') ? old('fuel_capacity') : 0 }}" class="md-input" min="0" />
+                            <input type="text" name="fuel_capacity" id="fuel_capacity" value="{{ old('fuel_capacity') ? old('fuel_capacity') : 0 }}" class="md-input" min="0" />
                         </div>
                         <br>
                         <div class="uk-input-group">
                             <span class="uk-input-group-addon">Seat Capacity</span>
-                            <input type="number" name="seat" id="seat" value="{{ old('seat') ? old('seat') : 0 }}" class="md-input" min="0" />
+                            <input type="text" name="seat" id="seat" value="{{ old('seat') ? old('seat') : 0 }}" class="md-input" min="0" />
                         </div>
                     </div>
                     <div class="uk-width-2-3">

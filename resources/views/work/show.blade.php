@@ -45,7 +45,7 @@
                                                         <div class="uk-width-1-2">
                                                             <div class="uk-input-group">
                                                                 <label>Amount (₹)</label>
-                                                                <input type="number" name="income_amount[]" class="md-input income_amount" min="0" value="{{ $rowInc->amount }}" readonly />
+                                                                <input type="text" name="income_amount[]" class="md-input income_amount" min="0" value="{{ $rowInc->amount }}" readonly />
                                                             </div>
                                                         </div>
                                                         <div class="uk-width-1-2">
@@ -82,7 +82,7 @@
                                                         <div class="uk-width-1-3">
                                                             <div class="uk-input-group">
                                                                 <label>Amount (₹)</label>
-                                                                <input type="number" name="expense_amount[]" class="md-input expense_amount" min="0" value="{{ $rowExp->amount }}" readonly />
+                                                                <input type="text" name="expense_amount[]" class="md-input expense_amount" min="0" value="{{ $rowExp->amount }}" readonly />
                                                             </div>
                                                         </div>
                                                         <div class="uk-width-1-3">

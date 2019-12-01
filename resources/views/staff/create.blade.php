@@ -30,7 +30,7 @@
                     <div class="uk-width-medium-1-6">
                         <div class="parsley-row">
                             <label>Opening Balance (₹)<span class="req"> * </span></label>
-                            <input type="number" name="balance" value="{{ old('balance') ? old('balance') : 0 }}" class="md-input" required />
+                            <input type="text" name="balance" value="{{ old('balance') ? old('balance') : 0 }}" class="md-input" required />
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <div class="uk-input-group">
                             {{--<span class="uk-input-group-addon">₹</span>--}}
                             <label>Salary(₹)<span class="req"> * </span></label>
-                            <input type="number" name="salary" value="{{old('salary')}}" class="md-input" required />
+                            <input type="text" name="salary" value="{{old('salary')}}" class="md-input" required />
                         </div>
                     </div>
                 </div>

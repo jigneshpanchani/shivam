@@ -49,7 +49,7 @@
                     <div class="uk-width-medium-1-3">
                         <div class="uk-form-row parsley-row">
                             <label>Salary (₹)<span class="req"> * </span></label>
-                            <input type="number" name="amount" value="{{ (!empty($result['amount'])) ? $result['amount'] : old('amount') }}" class="md-input" id="amount" min="0" required/>
+                            <input type="text" name="amount" value="{{ (!empty($result['amount'])) ? $result['amount'] : old('amount') }}" class="md-input" id="amount" min="0" required/>
                         </div>
                     </div>
                     <div class="uk-width-medium-1-3">

@@ -84,7 +84,7 @@
                                         <div class="uk-input-group">
                                             <label>Salary (₹)<span class="req"> * </span></label>
                                             {{--<input type="text" name="salary[]" class="md-input masked_input label-fixed" id="masked_currency" data-inputmask="'alias': 'currency', 'groupSeparator': ',', 'autoGroup': true, 'digits': 2, 'digitsOptional': true, 'prefix': false, 'placeholder': '0'" data-inputmask-showmaskonhover="false" />--}}
-                                            <input type="number" name="salary[]" class="md-input" min="0" required />
+                                            <input type="text" name="salary[]" class="md-input" min="0" required />
                                         </div>
                                     </div>
                                     <div class="uk-width-1-6">

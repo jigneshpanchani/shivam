@@ -96,7 +96,7 @@
                                     <div class="uk-width-1-3">
                                         <div class="uk-input-group">
                                             <label>Amount (₹)<span class="req"> * </span></label>
-                                            <input type="number" name="amount[]" class="md-input amount" min="0" />
+                                            <input type="text" name="amount[]" class="md-input amount" min="0" />
                                         </div>
                                     </div>
                                     <div class="uk-width-1-3">
