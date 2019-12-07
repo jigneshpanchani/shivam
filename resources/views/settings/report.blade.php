@@ -238,7 +238,7 @@
                 }else if(type == 'S'){
                     arr = { '4':'S' };
                 }else{
-                    arr = { '2':'E', '3':'I', '4':'T' };
+                    arr = { '2':'I', '3':'E', '4':'T' };
                 }
                 return arr;
             }
