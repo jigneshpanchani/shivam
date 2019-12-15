@@ -31,7 +31,7 @@
                             @if(count($expenses) > 0)
                             <tfoot>
                             <tr>
-                                <th>Page Total <br>(Total)</th>
+                                <th>Total</th>
                                 <th></th>
                                 <th class="sumE">0</th>
                                 <th></th>
@@ -79,7 +79,7 @@
                             @if(count($incomes) > 0)
                             <tfoot>
                             <tr>
-                                <th>Page Total <br>(Total)</th>
+                                <th>Total</th>
                                 <th></th>
                                 <th class="sumI">0</th>
                                 <th></th>
@@ -121,7 +121,7 @@
                                 @if(count($salaries) > 0)
                                     <tfoot>
                                     <tr>
-                                        <th>Page Total <br>(Total)</th>
+                                        <th>Total</th>
                                         <th></th>
                                         <th></th>
                                         <th></th>
@@ -159,7 +159,7 @@
                             @if(count($works) > 0)
                                 <tfoot>
                                 <tr>
-                                    <th>Page Total <br>(Total)</th>
+                                    <th>Total</th>
                                     <th></th>
                                     <th class="sumI">0</th>
                                     <th class="sumE">0</th>
@@ -219,9 +219,10 @@
 
             function calculateTotal() {
                 $.each(getArr(), function (key, value){
-                    let pageTotal = table.column( key, {'page': 'current'}).data().sum();
+                    //let pageTotal = table.column( key, {'page': 'current'}).data().sum();
                     let total = table.column( key ).data().sum();
-                    let display = currencyFormat(pageTotal)+' <br>('+currencyFormat(total)+')';
+                    //let display = currencyFormat(pageTotal)+' <br>('+currencyFormat(total)+')';
+                    let display = currencyFormat(total);
                     $('.sum'+value).html(display);
                 });
             }
