@@ -9,7 +9,10 @@
                 <div class="uk-width-medium-5-6">
                     <h4 class="heading_a uk-margin-bottom">{{ $title }}</h4>
                 </div>
-                <div class="uk-width-medium-1-6 uk-text-right">
+                <div class="uk-width-medium-1-6 uk-text-
+                
+                
+                ">
                     <a class="md-btn md-btn-primary md-btn-small md-btn-wave-light md-btn-icon" href="{{ route('report') }}"><i class="uk-icon-arrow-circle-left"></i> Filter</a>
                 </div>
             </div>
@@ -25,7 +28,7 @@
                                 <th>Bus</th>
                                 <th>Expense (₹)</th>
                                 <th>Detail</th>
-                                <th>Total (₹)</th>
+                                <th style="text-align: right;">Total (₹)</th>
                             </tr>
                             </thead>
                             @if(count($expenses) > 0)
@@ -35,7 +38,7 @@
                                 <th></th>
                                 <th class="sumE">0</th>
                                 <th></th>
-                                <th class="sumT">0</th>
+                                <th class="sumT" style="text-align: right;">0</th>
                             </tr>
                             </tfoot>
                             @endif
@@ -58,7 +61,7 @@
                                     <td>{{ str_replace(' - ', '.', $row['bus']['bus_number']) }}</td>
                                     <td>{{ number_format($row['expense']) }}</td>
                                     <td><?= nl2br(implode('<br> ', $detail)); ?></td>
-                                    <td>{{ number_format($totalExp) }}</td>
+                                    <td style="text-align: right;">{{ number_format($totalExp) }}</td>
                                 </tr>
                             @endforeach
                             @else
@@ -115,7 +118,7 @@
                                 <th>Name</th>
                                 <th>Department</th>
                                 <th>Type</th>
-                                <th>Amount (₹)</th>
+                                <th style="text-align: right;">Amount (₹)</th>
                             </tr>
                             </thead>
                                 @if(count($salaries) > 0)
@@ -125,7 +128,7 @@
                                         <th></th>
                                         <th></th>
                                         <th></th>
-                                        <th class="sumS">0</th>
+                                        <th class="sumS" style="text-align: right;">0</th>
                                     </tr>
                                     </tfoot>
                                 @endif
@@ -137,7 +140,7 @@
                                         <td>{{ $row['staff']['name'] }}</td>
                                         <td>{{ $row['staff']['department'] }}</td>
                                         <td>{{ ($row['income_type'] == 'S') ? 'Salary' : 'Withdrawal' }}</td>
-                                        <td>{{ number_format($row['amount']) }}</td>
+                                        <td style="text-align: right;">{{ number_format($row['amount']) }}</td>
                                     </tr>
                                 @endforeach
                             @else
@@ -151,9 +154,9 @@
                             <tr>
                                 <th>Date</th>
                                 <th>Bus</th>
-                                <th>Income (₹)</th>
-                                <th>Expense (₹)</th>
-                                <th>Total (₹)</th>
+                                <th style="text-align: right;">Income (₹)</th>
+                                <th style="text-align: right;">Expense (₹)</th>
+                                <th style="text-align: right;">Total (₹)</th>
                             </tr>
                             </thead>
                             @if(count($works) > 0)
@@ -161,9 +164,9 @@
                                 <tr>
                                     <th>Total</th>
                                     <th></th>
-                                    <th class="sumI">0</th>
-                                    <th class="sumE">0</th>
-                                    <th class="sumT">0</th>
+                                    <th class="sumI" style="text-align: right;">0</th>
+                                    <th class="sumE" style="text-align: right;">0</th>
+                                    <th class="sumT" style="text-align: right;">0</th>
                                 </tr>
                                 </tfoot>
                             @endif
@@ -173,9 +176,9 @@
                                     <tr>
                                         <td>{{ date('d/m/Y', strtotime($row['work_date'])) }}</td>
                                         <td>{{ str_replace(' - ', '.', $row['bus']['bus_number']) }}</td>
-                                        <td>{{ number_format($row['income']) }}</td>
-                                        <td>{{ number_format($row['expense']) }}</td>
-                                        <td>{{ number_format($row['income'] - $row['expense']) }}</td>
+                                        <td style="text-align: right;">{{ number_format($row['income']) }}</td>
+                                        <td style="text-align: right;">{{ number_format($row['expense']) }}</td>
+                                        <td style="text-align: right;">{{ number_format($row['income'] - $row['expense']) }}</td>
                                     </tr>
                                 @endforeach
                             @else
